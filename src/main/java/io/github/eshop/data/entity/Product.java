@@ -15,7 +15,7 @@ public class Product {
     private String image;
 
     @OneToOne
-    @Column(name="category_id")
+    @JoinColumn(name="category_id")
     private Category category;
 
     public Integer getId() {

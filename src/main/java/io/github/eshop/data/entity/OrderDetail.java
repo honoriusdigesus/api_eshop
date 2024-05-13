@@ -10,7 +10,7 @@ public class OrderDetail {
     private Integer id;
 
     @OneToOne
-    @JoinColumn(name="order_id")
+    @JoinColumn(name="orders_id")
     private Order order;
 
     @OneToOne

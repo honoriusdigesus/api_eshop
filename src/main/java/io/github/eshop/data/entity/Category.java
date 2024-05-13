@@ -13,6 +13,7 @@ public class Category {
     @GeneratedValue
     private Integer id;
     private Categories category;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -30,12 +31,21 @@ public class Category {
         this.category = category;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Category() {
     }
 
-    public Category(Integer id, Categories category) {
+    public Category(Integer id, Categories category, String description) {
         this.id = id;
         this.category = category;
+        this.description = description;
     }
 
     @Override
@@ -43,6 +53,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", category=" + category +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
