@@ -1,27 +1,13 @@
-package io.github.eshop.data.entity;
+package io.github.eshop.persistence.entity;
 
 import io.github.eshop.enums.Categories;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.hibernate.annotations.JdbcTypeCode;
 
-import java.sql.Types;
 
-@Entity
-@Table(name = "category")
-public class Category {
-    @Id
-    @GeneratedValue
+public class CategoryPersistence {
+
     private Integer id;
-
-    @NotNull
-    @JdbcTypeCode(Types.VARCHAR)
     private Categories category;
-
-    private String description;
+    private String description = "Sin descripción";
 
     public Integer getId() {
         return id;
@@ -47,11 +33,11 @@ public class Category {
         this.description = description;
     }
 
-    public Category() {
-
+    public CategoryPersistence() {
+        description = "Sin descripción";
     }
 
-    public Category(Integer id, Categories category, String description) {
+    public CategoryPersistence(Integer id, Categories category, String description) {
         this.id = id;
         this.category = category;
         this.description = description;
