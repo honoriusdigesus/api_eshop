@@ -33,6 +33,7 @@ public class CategoryDomain {
     }
 
     public CategoryDomain() {
+        description= "SIN DESCRIPCIÓN";
     }
 
     public CategoryDomain(Integer id, String category, String description) {

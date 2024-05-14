@@ -37,4 +37,11 @@ public class ErrorHandler {
         return ResponseEntity.status(status).body(error);
     }
 
+    @ExceptionHandler(InvalidProductException.class)
+    public ResponseEntity<ErrorResponse> handInvalidProductException(InvalidProductException ex) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ErrorResponse error = new ErrorResponse(104, "PRODUCT_NAME_MUST_NOT_BE_NULL", ex.getMessage());
+        return ResponseEntity.status(status).body(error);
+    }
+
 }

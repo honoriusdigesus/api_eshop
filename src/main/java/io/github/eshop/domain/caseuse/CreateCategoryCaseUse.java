@@ -23,9 +23,6 @@ public class CreateCategoryCaseUse {
         if (validator.validateCategoryName(categoryDomain.getCategory()).booleanValue() == false){
             throw new InvalidCategoryException("The category name must not be null or empty, nor must it be a number");
         }else{
-            if (categoryDomain.getDescription() == null || categoryDomain.getDescription().equals("")) {
-                categoryDomain.setDescription("SIN DESCRIPCIÓN");
-            }
             categoryDomain.setCategory(categoryDomain.getCategory().trim().toUpperCase());
             categoryDomain.setDescription(categoryDomain.getDescription().trim().toUpperCase());
             categoryRepository.save(categoryMapper.fromDomainToData(categoryDomain));
