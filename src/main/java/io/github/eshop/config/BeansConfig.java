@@ -2,6 +2,7 @@ package io.github.eshop.config;
 
 import io.github.eshop.data.repository.CategoryRepository;
 import io.github.eshop.domain.caseuse.CreateCategoryCaseUse;
+import io.github.eshop.domain.caseuse.FindByCategoryNameCaseUse;
 import io.github.eshop.domain.mapper.CategoryMapper;
 import io.github.eshop.utils.Validator;
 import org.springframework.context.annotation.Bean;
@@ -18,5 +19,10 @@ public class BeansConfig {
     @Bean
     public CreateCategoryCaseUse createCategoryCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper, Validator validator) {
         return new CreateCategoryCaseUse(categoryRepository, categoryMapper, validator);
+    }
+
+    @Bean
+    public FindByCategoryNameCaseUse findByCategoryNameCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper, Validator validator) {
+        return new FindByCategoryNameCaseUse(categoryRepository, categoryMapper, validator);
     }
 }

@@ -1,18 +1,11 @@
 package io.github.eshop.domain.entity;
 
-import io.github.eshop.enums.Categories;
-import org.antlr.v4.runtime.misc.NotNull;
-import org.hibernate.annotations.JdbcTypeCode;
-
-import java.sql.Types;
-
-
 public class CategoryDomain {
 
     private Integer id;
 
 
-    private Categories category;
+    private String category;
     private String description;
 
     public Integer getId() {
@@ -23,11 +16,11 @@ public class CategoryDomain {
         this.id = id;
     }
 
-    public Categories getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Categories category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -42,7 +35,7 @@ public class CategoryDomain {
     public CategoryDomain() {
     }
 
-    public CategoryDomain(Integer id, Categories category, String description) {
+    public CategoryDomain(Integer id, String category, String description) {
         this.id = id;
         this.category = category;
         this.description = description;

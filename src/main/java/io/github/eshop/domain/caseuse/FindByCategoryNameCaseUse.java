@@ -2,33 +2,36 @@ package io.github.eshop.domain.caseuse;
 
 import io.github.eshop.data.repository.CategoryRepository;
 import io.github.eshop.domain.entity.CategoryDomain;
+import io.github.eshop.domain.exception.CategoryNotFoundException;
 import io.github.eshop.domain.exception.InvalidCategoryException;
 import io.github.eshop.domain.mapper.CategoryMapper;
 import io.github.eshop.utils.Validator;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.List;
+
 @Component
-public class CreateCategoryCaseUse {
+public class FindByCategoryNameCaseUse {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
     private final Validator validator;
 
-    public CreateCategoryCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper, Validator validator) {
+    public FindByCategoryNameCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper, Validator validator) {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
         this.validator = validator;
     }
 
-    public void createCategory(CategoryDomain categoryDomain) {
-        if (validator.validateCategoryName(categoryDomain.getCategory()).booleanValue() == false){
+    public CategoryDomain findByCategoryName(String categoryName) {
+        if (!validator.validateCategoryName(categoryName)) {
             throw new InvalidCategoryException("The category name must not be null or empty, nor must it be a number");
-        }else{
-            if (categoryDomain.getDescription() == null || categoryDomain.getDescription().equals("")) {
-                categoryDomain.setDescription("SIN DESCRIPCIÓN");
+        } else {
+            var categoryData = categoryRepository.findByCategoryName(categoryName.trim().toUpperCase());
+            if (categoryData == null) {
+                throw new CategoryNotFoundException("No category found with name: " + categoryName);
             }
-            categoryDomain.setCategory(categoryDomain.getCategory().trim().toUpperCase());
-            categoryDomain.setDescription(categoryDomain.getDescription().trim().toUpperCase());
-            categoryRepository.save(categoryMapper.fromDomainToData(categoryDomain));
+            return categoryMapper.fromDataToDomain(categoryData);
         }
     }
 }

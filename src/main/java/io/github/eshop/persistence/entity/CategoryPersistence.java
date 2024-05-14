@@ -1,12 +1,9 @@
 package io.github.eshop.persistence.entity;
 
-import io.github.eshop.enums.Categories;
-
-
 public class CategoryPersistence {
 
     private Integer id;
-    private Categories category;
+    private String category;
     private String description = "Sin descripción";
 
     public Integer getId() {
@@ -17,11 +14,11 @@ public class CategoryPersistence {
         this.id = id;
     }
 
-    public Categories getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Categories category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -37,7 +34,7 @@ public class CategoryPersistence {
         description = "Sin descripción";
     }
 
-    public CategoryPersistence(Integer id, Categories category, String description) {
+    public CategoryPersistence(Integer id, String category, String description) {
         this.id = id;
         this.category = category;
         this.description = description;
