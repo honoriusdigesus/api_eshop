@@ -8,9 +8,6 @@ import io.github.eshop.domain.mapper.CategoryMapper;
 import io.github.eshop.utils.Validator;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.List;
-
 @Component
 public class FindByCategoryNameCaseUse {
     private final CategoryRepository categoryRepository;

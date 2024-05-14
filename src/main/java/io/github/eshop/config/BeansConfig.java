@@ -2,6 +2,7 @@ package io.github.eshop.config;
 
 import io.github.eshop.data.repository.CategoryRepository;
 import io.github.eshop.domain.caseuse.CreateCategoryCaseUse;
+import io.github.eshop.domain.caseuse.DeleteCategoryCaseUse;
 import io.github.eshop.domain.caseuse.FindByCategoryNameCaseUse;
 import io.github.eshop.domain.mapper.CategoryMapper;
 import io.github.eshop.utils.Validator;
@@ -24,5 +25,10 @@ public class BeansConfig {
     @Bean
     public FindByCategoryNameCaseUse findByCategoryNameCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper, Validator validator) {
         return new FindByCategoryNameCaseUse(categoryRepository, categoryMapper, validator);
+    }
+
+    @Bean
+    public DeleteCategoryCaseUse deleteCategoryCaseUse(FindByCategoryNameCaseUse findByCategoryNameCaseUse, CategoryRepository categoryRepository) {
+        return new DeleteCategoryCaseUse(findByCategoryNameCaseUse, categoryRepository);
     }
 }
