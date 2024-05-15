@@ -41,7 +41,7 @@ public class Category {
     }
 
     public Category() {
-
+        description = "SIN DESCRIPCIÓN";
     }
 
     public Category(Integer id, String category, String description) {

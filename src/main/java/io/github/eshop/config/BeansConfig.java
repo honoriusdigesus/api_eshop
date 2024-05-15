@@ -46,4 +46,9 @@ public class BeansConfig {
     public FindByNameProductCaseUse findByNameProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator) {
         return new FindByNameProductCaseUse(productRepository, productMapper, validator);
     }
+
+    @Bean
+    public GetAllProductsCaseUse getAllProductsCaseUse(ProductRepository productRepository, ProductMapper productMapper) {
+        return new GetAllProductsCaseUse(productRepository, productMapper);
+    }
 }
