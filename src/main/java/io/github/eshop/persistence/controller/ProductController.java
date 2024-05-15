@@ -30,9 +30,9 @@ public class ProductController {
         createProductCaseUse.createProduct(productMapper.fromPersistenceToDomain(productPersistence));
     }
 
-    @GetMapping("/search/{name}")
-    public ProductPersistence findByName(@PathVariable String name) {
-        return productMapper.fromDomainToPersistence(findByNameProductCaseUse.findByName(name));
+    @GetMapping("/search/{productName}")
+    public ProductPersistence findByName(@PathVariable String productName) {
+        return productMapper.fromDomainToPersistence(findByNameProductCaseUse.findByProductName(productName));
     }
 
     @GetMapping("/all")
@@ -41,4 +41,5 @@ public class ProductController {
                 .map(productMapper::fromDomainToPersistence)
                 .collect(Collectors.toList());
     }
+
 }

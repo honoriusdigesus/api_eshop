@@ -2,7 +2,8 @@ package io.github.eshop.domain.caseuse;
 
 import io.github.eshop.data.repository.ProductRepository;
 import io.github.eshop.domain.entity.ProductDomain;
-import io.github.eshop.domain.exception.InvalidProductNameException;
+import io.github.eshop.domain.exception.CategoryNotFoundException;
+import io.github.eshop.domain.exception.InvalidCategoryException;
 import io.github.eshop.domain.mapper.ProductMapper;
 import io.github.eshop.utils.Validator;
 import org.springframework.stereotype.Component;
@@ -19,10 +20,15 @@ public class FindByNameProductCaseUse {
         this.validator = validator;
     }
 
-    public ProductDomain findByName(String name) {
-        if (validator.validateNameProduct(name)) {
-            new InvalidProductNameException("Invalid name");
+    public ProductDomain findByProductName(String name) {
+        if (!validator.validateCategoryName(name)) {
+            throw new InvalidCategoryException("The product name must not be null or empty, nor must it be a number");
+        } else {
+            var product = productRepository.findByProductName(name.trim().toUpperCase());
+            if (product == null) {
+                throw new CategoryNotFoundException("No category found with name: " + name);
+            }
+            return productMapper.fromEntityToDomain(product);
         }
-        return productMapper.fromEntityToDomain(productRepository.findByProductName(name));
     }
 }

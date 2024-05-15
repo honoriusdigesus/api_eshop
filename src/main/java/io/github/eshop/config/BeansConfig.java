@@ -51,4 +51,5 @@ public class BeansConfig {
     public GetAllProductsCaseUse getAllProductsCaseUse(ProductRepository productRepository, ProductMapper productMapper) {
         return new GetAllProductsCaseUse(productRepository, productMapper);
     }
+
 }

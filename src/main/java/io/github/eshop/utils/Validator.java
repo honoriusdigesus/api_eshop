@@ -13,9 +13,7 @@ public class Validator {
     Pattern pattern = Pattern.compile(regex);
 
     public Boolean validateCategoryName(Object categoryName) {
-
         Matcher matcher = pattern.matcher(categoryName.toString());
-
         if (categoryName == null) {
             return false;
         } else if (categoryName.toString().equals("")) {
@@ -27,14 +25,14 @@ public class Validator {
     }
 
     public Boolean validateProduct(ProductDomain product) {
-
-        Matcher matcher = pattern.matcher(product.getName().toString());
+        System.out.println(product.getName() + "xxxxxxxxxxxx");
+        Matcher matcher = pattern.matcher(product.getName());
 
         if (
                 product.getName() == null ||
-                product.getName().equals("") ||
+                product.getName().length() ==0 ||
                 product.getPrice() <= 0 ||
-                product.getPrice().equals("") ||
+                product.getPrice()== null ||
                 product.getStock() <= 0 ||
                 product.getStock().equals("") ||
                 product.getCategory().getId() == null ||
