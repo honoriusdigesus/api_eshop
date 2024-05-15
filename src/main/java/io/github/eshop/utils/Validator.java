@@ -24,19 +24,19 @@ public class Validator {
         return true;
     }
 
-    public Boolean validateProduct(ProductDomain product) {
-        System.out.println(product.getName() + "xxxxxxxxxxxx");
-        Matcher matcher = pattern.matcher(product.getName());
+    public Boolean validateProduct(ProductDomain productDomain) {
+        System.out.println(productDomain.getName() + "xxxxxxxxxxxx");
+        Matcher matcher = pattern.matcher(productDomain.getName());
 
         if (
-                product.getName() == null ||
-                product.getName().length() ==0 ||
-                product.getPrice() <= 0 ||
-                product.getPrice()== null ||
-                product.getStock() <= 0 ||
-                product.getStock().equals("") ||
-                product.getCategory().getId() == null ||
-                product.getCategory().getId().equals("")
+                productDomain.getName() == null ||
+                productDomain.getName().length() ==0 ||
+                productDomain.getPrice() <= 0 ||
+                productDomain.getPrice()== null ||
+                productDomain.getStock() <= 0 ||
+                productDomain.getStock().equals("") ||
+                productDomain.getCategory().getId() == null ||
+                productDomain.getCategory().getId().equals("")
         ) {
             return false;
         } else if (matcher.matches()) {

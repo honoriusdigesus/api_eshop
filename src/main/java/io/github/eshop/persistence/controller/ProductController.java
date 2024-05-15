@@ -1,9 +1,6 @@
 package io.github.eshop.persistence.controller;
 
-import io.github.eshop.domain.caseuse.CreateProductCaseUse;
-import io.github.eshop.domain.caseuse.FindByNameProductCaseUse;
-import io.github.eshop.domain.caseuse.GetAllProductsCaseUse;
-import io.github.eshop.domain.caseuse.UpdateProductCaseUse;
+import io.github.eshop.domain.caseuse.*;
 import io.github.eshop.persistence.entity.ProductPersistence;
 import io.github.eshop.persistence.mapper.ProductMapperPersistence;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +16,15 @@ public class ProductController {
     private final FindByNameProductCaseUse findByNameProductCaseUse;
     private final GetAllProductsCaseUse getAllProductsCaseUSe;
     private final UpdateProductCaseUse updateProductCaseUse;
+    private final DeleteProductCaseUse deleteProductCaseUse;
 
-    public ProductController(CreateProductCaseUse createProductCaseUse, ProductMapperPersistence productMapper, FindByNameProductCaseUse findByNameProductCaseUse, GetAllProductsCaseUse getAllProductsCaseUSe, UpdateProductCaseUse updateProductCaseUse) {
+    public ProductController(CreateProductCaseUse createProductCaseUse, ProductMapperPersistence productMapper, FindByNameProductCaseUse findByNameProductCaseUse, GetAllProductsCaseUse getAllProductsCaseUSe, UpdateProductCaseUse updateProductCaseUse, DeleteProductCaseUse deleteProductCaseUse) {
         this.createProductCaseUse = createProductCaseUse;
         this.productMapper = productMapper;
         this.findByNameProductCaseUse = findByNameProductCaseUse;
         this.getAllProductsCaseUSe = getAllProductsCaseUSe;
         this.updateProductCaseUse = updateProductCaseUse;
+        this.deleteProductCaseUse = deleteProductCaseUse;
     }
 
     @PostMapping("/create")
@@ -48,5 +47,10 @@ public class ProductController {
     @PutMapping("/update/{productName}")
     public void updateProduct(@PathVariable String productName, @RequestBody ProductPersistence productPersistence) {
         updateProductCaseUse.updateProduct(productName, productMapper.fromPersistenceToDomain(productPersistence));
+    }
+
+    @DeleteMapping("/delete/{productName}")
+    public void deleteProduct(@PathVariable String productName) {
+        deleteProductCaseUse.deleteProduct(productName);
     }
 }
