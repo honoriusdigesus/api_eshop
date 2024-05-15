@@ -3,6 +3,7 @@ package io.github.eshop.persistence.controller;
 import io.github.eshop.domain.caseuse.CreateProductCaseUse;
 import io.github.eshop.domain.caseuse.FindByNameProductCaseUse;
 import io.github.eshop.domain.caseuse.GetAllProductsCaseUse;
+import io.github.eshop.domain.caseuse.UpdateProductCaseUse;
 import io.github.eshop.persistence.entity.ProductPersistence;
 import io.github.eshop.persistence.mapper.ProductMapperPersistence;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +18,14 @@ public class ProductController {
     private final ProductMapperPersistence productMapper;
     private final FindByNameProductCaseUse findByNameProductCaseUse;
     private final GetAllProductsCaseUse getAllProductsCaseUSe;
+    private final UpdateProductCaseUse updateProductCaseUse;
 
-    public ProductController(CreateProductCaseUse createProductCaseUse, ProductMapperPersistence productMapper, FindByNameProductCaseUse findByNameProductCaseUse, GetAllProductsCaseUse getAllProductsCaseUSe) {
+    public ProductController(CreateProductCaseUse createProductCaseUse, ProductMapperPersistence productMapper, FindByNameProductCaseUse findByNameProductCaseUse, GetAllProductsCaseUse getAllProductsCaseUSe, UpdateProductCaseUse updateProductCaseUse) {
         this.createProductCaseUse = createProductCaseUse;
         this.productMapper = productMapper;
         this.findByNameProductCaseUse = findByNameProductCaseUse;
         this.getAllProductsCaseUSe = getAllProductsCaseUSe;
+        this.updateProductCaseUse = updateProductCaseUse;
     }
 
     @PostMapping("/create")
@@ -42,4 +45,8 @@ public class ProductController {
                 .collect(Collectors.toList());
     }
 
+    @PutMapping("/update/{productName}")
+    public void updateProduct(@PathVariable String productName, @RequestBody ProductPersistence productPersistence) {
+        updateProductCaseUse.updateProduct(productName, productMapper.fromPersistenceToDomain(productPersistence));
+    }
 }
