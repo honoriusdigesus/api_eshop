@@ -44,4 +44,11 @@ public class ErrorHandler {
         return ResponseEntity.status(status).body(error);
     }
 
+    @ExceptionHandler(InvalidProductNameException.class)
+    public ResponseEntity<ErrorResponse> handInvalidProductNameException(InvalidProductNameException ex) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ErrorResponse error = new ErrorResponse(105, "PRODUCT_NAME_VALID", ex.getMessage());
+        return ResponseEntity.status(status).body(error);
+    }
+
 }

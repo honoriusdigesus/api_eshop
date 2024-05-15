@@ -41,4 +41,9 @@ public class BeansConfig {
     public GetAllsCategoriesCaseUse getAllsCategoriesCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
         return new GetAllsCategoriesCaseUse(categoryRepository, categoryMapper);
     }
+
+    @Bean
+    public FindByNameProductCaseUse findByNameProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator) {
+        return new FindByNameProductCaseUse(productRepository, productMapper, validator);
+    }
 }

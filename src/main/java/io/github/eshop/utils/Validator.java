@@ -46,4 +46,14 @@ public class Validator {
         }
         return true;
     }
+
+    public Boolean validateNameProduct(String name) {
+        Matcher matcher = pattern.matcher(name);
+        if (name == null || name.equals("")) {
+            return false;
+        } else if (matcher.matches()) {
+            return false;
+        }
+        return true;
+    }
 }

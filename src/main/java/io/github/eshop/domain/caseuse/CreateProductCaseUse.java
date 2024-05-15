@@ -3,7 +3,6 @@ package io.github.eshop.domain.caseuse;
 import io.github.eshop.data.repository.ProductRepository;
 import io.github.eshop.domain.entity.ProductDomain;
 import io.github.eshop.domain.exception.InvalidProductException;
-import io.github.eshop.domain.mapper.CategoryMapper;
 import io.github.eshop.domain.mapper.ProductMapper;
 import io.github.eshop.utils.Validator;
 import org.springframework.stereotype.Component;
