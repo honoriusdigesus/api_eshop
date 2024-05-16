@@ -1,17 +1,10 @@
-package io.github.eshop.data.entity;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+package io.github.eshop.domain.entity;
 
 import java.math.BigInteger;
 
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue
+
+public class UserDomain {
+
     private Integer id;
     private BigInteger cc;
     private String firstname;
@@ -76,10 +69,10 @@ public class User {
         this.cc = cc;
     }
 
-    public User() {
+    public UserDomain() {
     }
 
-    public User(Integer id, BigInteger cc, String firstname, String lastname, String email, String password, String role) {
+    public UserDomain(Integer id, BigInteger cc, String firstname, String lastname, String email, String password, String role) {
         this.id = id;
         this.cc = cc;
         this.firstname = firstname;

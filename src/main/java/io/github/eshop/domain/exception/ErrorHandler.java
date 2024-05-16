@@ -51,4 +51,11 @@ public class ErrorHandler {
         return ResponseEntity.status(status).body(error);
     }
 
+    @ExceptionHandler(InvalidUserException.class)
+    public ResponseEntity<ErrorResponse> handInvalidUserException(InvalidUserException ex) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ErrorResponse error = new ErrorResponse(106, "USER_NAME_VALID", ex.getMessage());
+        return ResponseEntity.status(status).body(error);
+    }
+
 }
