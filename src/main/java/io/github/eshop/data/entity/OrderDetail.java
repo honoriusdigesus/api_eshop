@@ -9,16 +9,24 @@ public class OrderDetail {
     @GeneratedValue
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="orders_id")
     private Order order;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="product_id")
     private Product product;
 
     private Integer quantity;
     private Double price;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Order getOrder() {
         return order;
@@ -53,14 +61,6 @@ public class OrderDetail {
     }
 
     public OrderDetail() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public OrderDetail(Integer id, Order order, Product product, Integer quantity, Double price) {

@@ -4,6 +4,7 @@ import io.github.eshop.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -25,6 +26,9 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetails;
 
     public Integer getId() {
         return id;
@@ -74,16 +78,25 @@ public class Order {
         this.address = address;
     }
 
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
     public Order() {
     }
 
-    public Order(Address address, User user, Payment payment, OrderStatus status, LocalDateTime order_date, Integer id) {
-        this.address = address;
-        this.user = user;
-        this.payment = payment;
-        this.status = status;
-        this.order_date = order_date;
+    public Order(Integer id, LocalDateTime order_date, OrderStatus status, Payment payment, User user, Address address, List<OrderDetail> orderDetails) {
         this.id = id;
+        this.order_date = order_date;
+        this.status = status;
+        this.payment = payment;
+        this.user = user;
+        this.address = address;
+        this.orderDetails = orderDetails;
     }
 
     @Override
@@ -95,6 +108,7 @@ public class Order {
                 ", payment=" + payment +
                 ", user=" + user +
                 ", address=" + address +
+                ", orderDetails=" + orderDetails +
                 '}';
     }
 }

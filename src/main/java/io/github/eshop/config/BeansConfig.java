@@ -73,4 +73,9 @@ public class BeansConfig {
     public FindUserByCcCaseUse findUserByCcCaseUse(UserRepository userRepository, UserMapper userMapper) {
         return new FindUserByCcCaseUse(userRepository, userMapper);
     }
+
+    @Bean
+    public GetAllUserCaseUse getAllUserCaseUse(UserRepository userRepository, UserMapper userMapper) {
+        return new GetAllUserCaseUse(userRepository, userMapper);
+    }
 }
