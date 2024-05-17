@@ -20,9 +20,9 @@ public class CreateUserCaseUse {
     }
 
     public void createUser(UserDomain userDomain) {
-        if (validator.validateUser(userDomain)) {
-            userRepository.save(userMapper.fromDomainToEntity(userDomain));
+        if (validator.validateUser(userDomain)==false) {
+            throw new InvalidUserException("The user is not valid");
         }
-        throw new InvalidUserException("The user is not valid");
+        userRepository.save(userMapper.fromDomainToEntity(userDomain));
     }
 }

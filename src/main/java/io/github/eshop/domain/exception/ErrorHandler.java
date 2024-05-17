@@ -58,4 +58,11 @@ public class ErrorHandler {
         return ResponseEntity.status(status).body(error);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handUserNotFoundException(UserNotFoundException ex) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ErrorResponse error = new ErrorResponse(107, "USER_NOT_FOUND", ex.getMessage());
+        return ResponseEntity.status(status).body(error);
+    }
+
 }

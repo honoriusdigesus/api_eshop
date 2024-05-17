@@ -68,4 +68,9 @@ public class BeansConfig {
     public CreateUserCaseUse createUserCaseUse(UserRepository userRepository, UserMapper userMapper, Validator validator) {
         return new CreateUserCaseUse(userRepository, userMapper, validator);
     }
+
+    @Bean
+    public FindUserByCcCaseUse findUserByCcCaseUse(UserRepository userRepository, UserMapper userMapper) {
+        return new FindUserByCcCaseUse(userRepository, userMapper);
+    }
 }
