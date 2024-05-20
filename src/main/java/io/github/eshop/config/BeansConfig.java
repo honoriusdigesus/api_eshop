@@ -57,8 +57,8 @@ public class BeansConfig {
     }
 
     @Bean
-    public UpdateProductCaseUse updateProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator) {
-        return new UpdateProductCaseUse(productRepository, productMapper, validator);
+    public UpdateProductCaseUse updateProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator, FindByNameProductCaseUse findByNameProductCaseUse) {
+        return new UpdateProductCaseUse(productRepository, productMapper, validator, findByNameProductCaseUse);
     }
 
     @Bean

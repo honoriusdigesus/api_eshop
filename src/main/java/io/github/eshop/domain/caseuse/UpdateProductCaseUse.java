@@ -11,16 +11,18 @@ public class UpdateProductCaseUse {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
     private final Validator validator;
+    private final FindByNameProductCaseUse findByNameProductCaseUse;
 
-    public UpdateProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator) {
+    public UpdateProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator, FindByNameProductCaseUse findByNameProductCaseUse) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.validator = validator;
+        this.findByNameProductCaseUse = findByNameProductCaseUse;
     }
 
     public void updateProduct(String nameProductToUpdate, ProductDomain productUpdate) {
 
-        var productFound = productRepository.findByProductName(nameProductToUpdate);
+        var productFound = findByNameProductCaseUse.findByProductName(nameProductToUpdate);
         if (validator.validateProduct(productUpdate) == false) {
             throw new RuntimeException("Product not valid");
         } else if (productFound != null) {
@@ -30,7 +32,7 @@ public class UpdateProductCaseUse {
             productFound.setStock(productUpdate.getStock());
             productFound.setCategory(productUpdate.getCategory());
             productFound.setImage(productUpdate.getImage());
-            productRepository.save(productFound);
+            productRepository.save(productMapper.fromDomainToEntity(productFound));
         } else {
             throw new RuntimeException("Product not found");
         }
