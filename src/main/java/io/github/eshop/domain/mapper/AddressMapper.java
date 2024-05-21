@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class AddressMapper {
     public AddressDomain fromEntityToDomain(Shipping_Address address) {
         AddressDomain addressDomain = new AddressDomain();
+        addressDomain.setId(address.getId());
         addressDomain.setCountry(address.getCountry());
         addressDomain.setState(address.getState());
         addressDomain.setCity(address.getCity());
@@ -18,6 +19,7 @@ public class AddressMapper {
 
     public Shipping_Address fromDomainToEntity(AddressDomain addressDomain) {
         Shipping_Address address = new Shipping_Address();
+        address.setId(addressDomain.getId());
         address.setCountry(addressDomain.getCountry());
         address.setState(addressDomain.getState());
         address.setCity(addressDomain.getCity());

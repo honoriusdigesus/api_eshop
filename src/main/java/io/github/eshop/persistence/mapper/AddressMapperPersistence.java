@@ -9,6 +9,7 @@ public class AddressMapperPersistence {
 
     public AddressPersistence fromDomainToPersistence(AddressDomain addressDomain) {
         AddressPersistence addressPersistence = new AddressPersistence();
+        addressPersistence.setId(addressDomain.getId());
         addressPersistence.setCountry(addressDomain.getCountry());
         addressPersistence.setState(addressDomain.getState());
         addressPersistence.setCity(addressDomain.getCity());
@@ -19,6 +20,7 @@ public class AddressMapperPersistence {
 
     public AddressDomain fromPersistenceToDomain(AddressPersistence addressPersistence) {
         AddressDomain addressDomain = new AddressDomain();
+        addressDomain.setId(addressPersistence.getId());
         addressDomain.setCountry(addressPersistence.getCountry());
         addressDomain.setState(addressPersistence.getState());
         addressDomain.setCity(addressPersistence.getCity());

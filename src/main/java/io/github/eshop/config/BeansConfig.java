@@ -100,4 +100,9 @@ public class BeansConfig {
     public DeleteShippingAddressCaseUse deleteShippingAddressCaseUse(ShippingAddressRepository addressRepository) {
         return new DeleteShippingAddressCaseUse(addressRepository);
     }
+
+    @Bean
+    public GetAllShippingAddressCaseUse getAllShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressMapper addressMapper) {
+        return new GetAllShippingAddressCaseUse(addressRepository, addressMapper);
+    }
 }
