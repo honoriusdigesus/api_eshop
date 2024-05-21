@@ -1,12 +1,12 @@
 package io.github.eshop.domain.mapper;
 
-import io.github.eshop.data.entity.Address;
+import io.github.eshop.data.entity.Shipping_Address;
 import io.github.eshop.domain.entity.AddressDomain;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AddressMapper {
-    public AddressDomain fromEntityToDomain(Address address) {
+    public AddressDomain fromEntityToDomain(Shipping_Address address) {
         AddressDomain addressDomain = new AddressDomain();
         addressDomain.setCountry(address.getCountry());
         addressDomain.setState(address.getState());
@@ -16,8 +16,8 @@ public class AddressMapper {
         return addressDomain;
     }
 
-    public Address fromDomainToEntity(AddressDomain addressDomain) {
-        Address address = new Address();
+    public Shipping_Address fromDomainToEntity(AddressDomain addressDomain) {
+        Shipping_Address address = new Shipping_Address();
         address.setCountry(addressDomain.getCountry());
         address.setState(addressDomain.getState());
         address.setCity(addressDomain.getCity());

@@ -3,6 +3,7 @@ package io.github.eshop.persistence.controller;
 import io.github.eshop.domain.caseuse.CreateUserCaseUse;
 import io.github.eshop.domain.caseuse.FindUserByCcCaseUse;
 import io.github.eshop.domain.caseuse.GetAllUserCaseUse;
+import io.github.eshop.domain.caseuse.UpdateUserCaseUse;
 import io.github.eshop.persistence.entity.UserPersistence;
 import io.github.eshop.persistence.mapper.UserMapperPersistence;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +20,14 @@ public class UserController {
     private final UserMapperPersistence userMapperPersistence;
     private final FindUserByCcCaseUse findUserByCcCaseUse;
     private final GetAllUserCaseUse getAllUserCaseUse;
+    private final UpdateUserCaseUse updateUserCaseUse;
 
-    public UserController(CreateUserCaseUse createUserCaseUse, UserMapperPersistence userMapperPersistence, FindUserByCcCaseUse findUserByCcCaseUse, GetAllUserCaseUse getAllUserCaseUse) {
+    public UserController(CreateUserCaseUse createUserCaseUse, UserMapperPersistence userMapperPersistence, FindUserByCcCaseUse findUserByCcCaseUse, GetAllUserCaseUse getAllUserCaseUse, UpdateUserCaseUse updateUserCaseUse) {
         this.createUserCaseUse = createUserCaseUse;
         this.userMapperPersistence = userMapperPersistence;
         this.findUserByCcCaseUse = findUserByCcCaseUse;
         this.getAllUserCaseUse = getAllUserCaseUse;
+        this.updateUserCaseUse = updateUserCaseUse;
     }
 
     @PostMapping("/create")
@@ -41,4 +44,10 @@ public class UserController {
     public List<UserPersistence> getAllUsers() {
         return getAllUserCaseUse.getAllUsers().stream().map(userMapperPersistence::fromDomainToPersistence).collect(Collectors.toList());
     }
+
+    @PutMapping("/update/{cc}")
+    public void updateUser(@PathVariable BigDecimal cc, @RequestBody UserPersistence userPersistence) {
+        updateUserCaseUse.updateUser(cc, userMapperPersistence.fromPersistenceToDomain(userPersistence));
+    }
+
 }

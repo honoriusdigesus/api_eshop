@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "address")
-public class Address {
+public class Shipping_Address {
     @Id
     @GeneratedValue
     private Integer id;
@@ -65,10 +65,10 @@ public class Address {
         this.id = id;
     }
 
-    public Address() {
+    public Shipping_Address() {
     }
 
-    public Address(Integer id, String country, String state, String city, String address_line, User users) {
+    public Shipping_Address(Integer id, String country, String state, String city, String address_line, User users) {
         this.id = id;
         this.country = country;
         this.state = state;

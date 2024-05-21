@@ -25,7 +25,7 @@ public class Order {
 
     @OneToOne
     @JoinColumn(name = "address_id")
-    private Address address;
+    private Shipping_Address address;
 
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
@@ -70,11 +70,11 @@ public class Order {
         this.user = user;
     }
 
-    public Address getAddress() {
+    public Shipping_Address getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Shipping_Address address) {
         this.address = address;
     }
 
@@ -89,7 +89,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(Integer id, LocalDateTime order_date, OrderStatus status, Payment payment, User user, Address address, List<OrderDetail> orderDetails) {
+    public Order(Integer id, LocalDateTime order_date, OrderStatus status, Payment payment, User user, Shipping_Address address, List<OrderDetail> orderDetails) {
         this.id = id;
         this.order_date = order_date;
         this.status = status;

@@ -85,4 +85,9 @@ public class BeansConfig {
     public CreateAddressCaseUse createAddressCaseUse(AddressRepository addressRepository, AddressMapper addressMapper) {
         return new CreateAddressCaseUse(addressRepository, addressMapper);
     }
+
+    @Bean
+    public UpdateUserCaseUse updateUserCaseUse(FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper, UserRepository userRepository) {
+        return new UpdateUserCaseUse(findUserByCcCaseUse, userMapper, userRepository);
+    }
 }
