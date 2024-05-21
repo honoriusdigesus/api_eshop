@@ -2,7 +2,6 @@ package io.github.eshop.data.entity;
 
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "address")
 public class Shipping_Address {

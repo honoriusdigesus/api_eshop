@@ -1,8 +1,8 @@
 package io.github.eshop.config;
 
-import io.github.eshop.data.repository.AddressRepository;
 import io.github.eshop.data.repository.CategoryRepository;
 import io.github.eshop.data.repository.ProductRepository;
+import io.github.eshop.data.repository.ShippingAddressRepository;
 import io.github.eshop.data.repository.UserRepository;
 import io.github.eshop.domain.caseuse.*;
 import io.github.eshop.domain.mapper.AddressMapper;
@@ -82,12 +82,17 @@ public class BeansConfig {
     }
 
     @Bean
-    public CreateAddressCaseUse createAddressCaseUse(AddressRepository addressRepository, AddressMapper addressMapper) {
+    public CreateAddressCaseUse createAddressCaseUse(ShippingAddressRepository addressRepository, AddressMapper addressMapper) {
         return new CreateAddressCaseUse(addressRepository, addressMapper);
     }
 
     @Bean
     public UpdateUserCaseUse updateUserCaseUse(FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper, UserRepository userRepository) {
         return new UpdateUserCaseUse(findUserByCcCaseUse, userMapper, userRepository);
+    }
+
+    @Bean
+    public UpdateShippingAddressCaseUse updateShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressMapper addressMapper, UpdateUserCaseUse updateUserCaseUse, FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper) {
+        return new UpdateShippingAddressCaseUse(addressRepository, addressMapper, updateUserCaseUse, findUserByCcCaseUse, userMapper);
     }
 }
