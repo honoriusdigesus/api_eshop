@@ -95,4 +95,9 @@ public class BeansConfig {
     public UpdateShippingAddressCaseUse updateShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressMapper addressMapper, UpdateUserCaseUse updateUserCaseUse, FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper) {
         return new UpdateShippingAddressCaseUse(addressRepository, addressMapper, updateUserCaseUse, findUserByCcCaseUse, userMapper);
     }
+
+    @Bean
+    public DeleteShippingAddressCaseUse deleteShippingAddressCaseUse(ShippingAddressRepository addressRepository) {
+        return new DeleteShippingAddressCaseUse(addressRepository);
+    }
 }

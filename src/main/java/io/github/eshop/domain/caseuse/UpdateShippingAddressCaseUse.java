@@ -3,7 +3,6 @@ package io.github.eshop.domain.caseuse;
 import io.github.eshop.data.entity.Shipping_Address;
 import io.github.eshop.data.repository.ShippingAddressRepository;
 import io.github.eshop.domain.entity.AddressDomain;
-import io.github.eshop.domain.entity.UserDomain;
 import io.github.eshop.domain.exception.UserNotFoundException;
 import io.github.eshop.domain.mapper.AddressMapper;
 import io.github.eshop.domain.mapper.UserMapper;
