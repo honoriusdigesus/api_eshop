@@ -1,9 +1,6 @@
 package io.github.eshop.persistence.controller;
 
-import io.github.eshop.domain.caseuse.CreateUserCaseUse;
-import io.github.eshop.domain.caseuse.FindUserByCcCaseUse;
-import io.github.eshop.domain.caseuse.GetAllUserCaseUse;
-import io.github.eshop.domain.caseuse.UpdateUserCaseUse;
+import io.github.eshop.domain.caseuse.*;
 import io.github.eshop.persistence.entity.UserPersistence;
 import io.github.eshop.persistence.mapper.UserMapperPersistence;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +18,15 @@ public class UserController {
     private final FindUserByCcCaseUse findUserByCcCaseUse;
     private final GetAllUserCaseUse getAllUserCaseUse;
     private final UpdateUserCaseUse updateUserCaseUse;
+    private final DeleteUserCaseUse deleteUserCaseUse;
 
-    public UserController(CreateUserCaseUse createUserCaseUse, UserMapperPersistence userMapperPersistence, FindUserByCcCaseUse findUserByCcCaseUse, GetAllUserCaseUse getAllUserCaseUse, UpdateUserCaseUse updateUserCaseUse) {
+    public UserController(CreateUserCaseUse createUserCaseUse, UserMapperPersistence userMapperPersistence, FindUserByCcCaseUse findUserByCcCaseUse, GetAllUserCaseUse getAllUserCaseUse, UpdateUserCaseUse updateUserCaseUse, DeleteUserCaseUse deleteUserCaseUse) {
         this.createUserCaseUse = createUserCaseUse;
         this.userMapperPersistence = userMapperPersistence;
         this.findUserByCcCaseUse = findUserByCcCaseUse;
         this.getAllUserCaseUse = getAllUserCaseUse;
         this.updateUserCaseUse = updateUserCaseUse;
+        this.deleteUserCaseUse = deleteUserCaseUse;
     }
 
     @PostMapping("/create")
@@ -50,4 +49,8 @@ public class UserController {
         updateUserCaseUse.updateUser(cc, userMapperPersistence.fromPersistenceToDomain(userPersistence));
     }
 
+    @DeleteMapping("/delete/{cc}")
+    public void deleteUser(@PathVariable BigDecimal cc) {
+        deleteUserCaseUse.deleteUser(cc);
+    }
 }
