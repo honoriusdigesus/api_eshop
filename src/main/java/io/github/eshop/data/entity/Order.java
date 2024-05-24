@@ -1,6 +1,5 @@
 package io.github.eshop.data.entity;
 
-import io.github.eshop.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -12,23 +11,20 @@ public class Order {
     @Id
     @GeneratedValue
     private Integer id;
-    private LocalDateTime order_date;
-    private OrderStatus status;
+    private LocalDateTime date = LocalDateTime.now();
+    private Double totalPrice;
 
     @OneToOne
-    @JoinColumn(name = "payment_id")
+    @JoinColumn(name="payment_id")
     private Payment payment;
 
-    @OneToOne
-    @JoinColumn(name = "users_id")
+    @ManyToOne
+    @JoinColumn(name="users_id", nullable=false)
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Shipping_Address address;
-
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetail> orderDetails;
+    @OneToMany
+    @JoinColumn(name="order_product_id")
+    private List<OrderProduct> orderProducts;
 
     public Integer getId() {
         return id;
@@ -38,28 +34,20 @@ public class Order {
         this.id = id;
     }
 
-    public LocalDateTime getOrder_date() {
-        return order_date;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setOrder_date(LocalDateTime order_date) {
-        this.order_date = order_date;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
-    public OrderStatus getStatus() {
-        return status;
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public User getUser() {
@@ -70,45 +58,33 @@ public class Order {
         this.user = user;
     }
 
-    public Shipping_Address getAddress() {
-        return address;
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
     }
 
-    public void setAddress(Shipping_Address address) {
-        this.address = address;
-    }
-
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
     }
 
     public Order() {
     }
 
-    public Order(Integer id, LocalDateTime order_date, OrderStatus status, Payment payment, User user, Shipping_Address address, List<OrderDetail> orderDetails) {
+    public Order(Integer id, LocalDateTime date, Double totalPrice, User user, List<OrderProduct> orderProducts) {
         this.id = id;
-        this.order_date = order_date;
-        this.status = status;
-        this.payment = payment;
+        this.date = date;
+        this.totalPrice = totalPrice;
         this.user = user;
-        this.address = address;
-        this.orderDetails = orderDetails;
+        this.orderProducts = orderProducts;
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", order_date=" + order_date +
-                ", status=" + status +
-                ", payment=" + payment +
+                ", date=" + date +
+                ", totalPrice=" + totalPrice +
                 ", user=" + user +
-                ", address=" + address +
-                ", orderDetails=" + orderDetails +
+                ", orderProducts=" + orderProducts +
                 '}';
     }
 }

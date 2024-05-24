@@ -1,14 +1,8 @@
 package io.github.eshop.config;
 
-import io.github.eshop.data.repository.CategoryRepository;
-import io.github.eshop.data.repository.ProductRepository;
-import io.github.eshop.data.repository.ShippingAddressRepository;
-import io.github.eshop.data.repository.UserRepository;
+import io.github.eshop.data.repository.*;
 import io.github.eshop.domain.caseuse.*;
-import io.github.eshop.domain.mapper.AddressMapper;
-import io.github.eshop.domain.mapper.CategoryMapper;
-import io.github.eshop.domain.mapper.ProductMapper;
-import io.github.eshop.domain.mapper.UserMapper;
+import io.github.eshop.domain.mapper.*;
 import io.github.eshop.utils.Validator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -109,5 +103,10 @@ public class BeansConfig {
     @Bean
     public DeleteUserCaseUse deleteUserCaseUse(UserRepository userRepository, FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper) {
         return new DeleteUserCaseUse(userRepository, findUserByCcCaseUse, userMapper);
+    }
+
+    @Bean
+    public CreateOrderProductCaseUse createOrderProductCaseUse(OrderProductRepository orderProductRepository, OrderProductMapper orderProductMapper) {
+        return new CreateOrderProductCaseUse(orderProductRepository, orderProductMapper);
     }
 }

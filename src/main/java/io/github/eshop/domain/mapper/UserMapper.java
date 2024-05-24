@@ -7,26 +7,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
     public User fromDomainToEntity(UserDomain userDomain) {
-        User user = new User();
-        user.setId(userDomain.getId());
-        user.setCc(userDomain.getCc());
-        user.setFirstname(userDomain.getFirstname());
-        user.setLastname(userDomain.getLastname());
-        user.setEmail(userDomain.getEmail());
-        user.setPassword(userDomain.getPassword());
-        user.setRole(userDomain.getRole());
-        return user;
+return new User(
+                userDomain.getId(),
+                userDomain.getCc(),
+                userDomain.getFirstname(),
+                userDomain.getLastname(),
+                userDomain.getEmail(),
+                userDomain.getPassword(),
+                userDomain.getRole());
     }
 
     public UserDomain fromEntityToDomain(User user) {
-        UserDomain userDomain = new UserDomain();
-        userDomain.setId(user.getId());
-        userDomain.setCc(user.getCc());
-        userDomain.setFirstname(user.getFirstname());
-        userDomain.setLastname(user.getLastname());
-        userDomain.setEmail(user.getEmail());
-        userDomain.setPassword(user.getPassword());
-        userDomain.setRole(user.getRole());
-        return userDomain;
+        return new UserDomain(
+                user.getId(),
+                user.getCc(),
+                user.getFirstname(),
+                user.getLastname(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getRole());
     }
 }
