@@ -1,33 +1,25 @@
-package io.github.eshop.data.entity;
+package io.github.eshop.persistence.entity;
 
-import jakarta.persistence.*;
+import io.github.eshop.data.entity.OrderProduct;
+import io.github.eshop.data.entity.Shipping_Address;
+import io.github.eshop.data.entity.User;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "orders")
-public class Order {
-    @Id
-    @GeneratedValue
+
+public class OrderPersistence {
+
     private Integer id;
-    @ManyToOne
     private User user;
-
     private String paymentMethod;
-
-    @ManyToOne
     private Shipping_Address address;
-
-    @OneToMany(cascade = CascadeType.ALL)
     private List<OrderProduct> items;
-
     private double totalPrice;
 
-    public Order() {
+    public OrderPersistence() {
     }
 
-    public Order(Integer id, String paymentMethod, User user, Shipping_Address address, List<OrderProduct> items, double totalPrice) {
+    public OrderPersistence(Integer id, String paymentMethod, User user, Shipping_Address address, List<OrderProduct> items, double totalPrice) {
         this.id = id;
         this.paymentMethod = paymentMethod;
         this.user = user;
@@ -88,5 +80,17 @@ public class Order {
         totalPrice = items.stream()
                 .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
                 .sum();
+    }
+
+    @Override
+    public String toString() {
+        return "OrderPersistence{" +
+                "id=" + id +
+                ", user=" + user +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", address=" + address +
+                ", items=" + items +
+                ", totalPrice=" + totalPrice +
+                '}';
     }
 }

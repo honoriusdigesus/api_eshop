@@ -109,4 +109,24 @@ public class BeansConfig {
     public CreateOrderProductCaseUse createOrderProductCaseUse(OrderProductRepository orderProductRepository, OrderProductMapper orderProductMapper) {
         return new CreateOrderProductCaseUse(orderProductRepository, orderProductMapper);
     }
+
+    @Bean
+    public CreateOrderCaseUse createOrderCaseUse(OrderRepository orderRepository,
+                                                 OrderMapper orderMapper,
+                                                 UserMapper userMapper,
+                                                 FindProductByIdCaseUse findProductByIdCaseUse,
+                                                 FindUserByIdCaseUse findUserByIdCaseUse,
+                                                 ProductMapper productMapper, UpdateProductCaseUse updateProductCaseUse) {
+        return new CreateOrderCaseUse(orderRepository, orderMapper, userMapper, findProductByIdCaseUse, findUserByIdCaseUse, productMapper, updateProductCaseUse);
+    }
+
+    @Bean
+    public FindProductByIdCaseUse findProductByIdCaseUse(ProductRepository productRepository, ProductMapper productMapper) {
+        return new FindProductByIdCaseUse(productRepository, productMapper);
+    }
+
+    @Bean
+    public FindUserByIdCaseUse findUserByIdCaseUse(UserRepository userRepository, UserMapper userMapper) {
+        return new FindUserByIdCaseUse(userRepository, userMapper);
+    }
 }

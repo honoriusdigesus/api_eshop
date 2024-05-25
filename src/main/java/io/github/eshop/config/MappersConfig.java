@@ -30,4 +30,9 @@ public class MappersConfig {
     public OrderProductMapper orderProductMapper() {
         return new OrderProductMapper();
     }
+
+    @Bean
+    public OrderMapper orderMapper() {
+        return new OrderMapper();
+    }
 }

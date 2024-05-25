@@ -19,14 +19,16 @@ public class UserController {
     private final GetAllUserCaseUse getAllUserCaseUse;
     private final UpdateUserCaseUse updateUserCaseUse;
     private final DeleteUserCaseUse deleteUserCaseUse;
+    private final FindUserByIdCaseUse findUserByIdCaseUse;
 
-    public UserController(CreateUserCaseUse createUserCaseUse, UserMapperPersistence userMapperPersistence, FindUserByCcCaseUse findUserByCcCaseUse, GetAllUserCaseUse getAllUserCaseUse, UpdateUserCaseUse updateUserCaseUse, DeleteUserCaseUse deleteUserCaseUse) {
+    public UserController(CreateUserCaseUse createUserCaseUse, UserMapperPersistence userMapperPersistence, FindUserByCcCaseUse findUserByCcCaseUse, GetAllUserCaseUse getAllUserCaseUse, UpdateUserCaseUse updateUserCaseUse, DeleteUserCaseUse deleteUserCaseUse, FindUserByIdCaseUse findUserByIdCaseUse) {
         this.createUserCaseUse = createUserCaseUse;
         this.userMapperPersistence = userMapperPersistence;
         this.findUserByCcCaseUse = findUserByCcCaseUse;
         this.getAllUserCaseUse = getAllUserCaseUse;
         this.updateUserCaseUse = updateUserCaseUse;
         this.deleteUserCaseUse = deleteUserCaseUse;
+        this.findUserByIdCaseUse = findUserByIdCaseUse;
     }
 
     @PostMapping("/create")
@@ -43,6 +45,12 @@ public class UserController {
     public List<UserPersistence> getAllUsers() {
         return getAllUserCaseUse.getAllUsers().stream().map(userMapperPersistence::fromDomainToPersistence).collect(Collectors.toList());
     }
+
+    @GetMapping("/search/{id}")
+    public UserPersistence getUserById(@PathVariable Integer id) {
+        return userMapperPersistence.fromDomainToPersistence(findUserByIdCaseUse.findUserById(id));
+    }
+
 
     @PutMapping("/update/{cc}")
     public void updateUser(@PathVariable BigDecimal cc, @RequestBody UserPersistence userPersistence) {

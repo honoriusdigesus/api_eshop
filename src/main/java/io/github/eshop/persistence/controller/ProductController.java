@@ -17,14 +17,16 @@ public class ProductController {
     private final GetAllProductsCaseUse getAllProductsCaseUSe;
     private final UpdateProductCaseUse updateProductCaseUse;
     private final DeleteProductCaseUse deleteProductCaseUse;
+    private final FindProductByIdCaseUse findProductByIdCaseUse;
 
-    public ProductController(CreateProductCaseUse createProductCaseUse, ProductMapperPersistence productMapper, FindByNameProductCaseUse findByNameProductCaseUse, GetAllProductsCaseUse getAllProductsCaseUSe, UpdateProductCaseUse updateProductCaseUse, DeleteProductCaseUse deleteProductCaseUse) {
+    public ProductController(CreateProductCaseUse createProductCaseUse, ProductMapperPersistence productMapper, FindByNameProductCaseUse findByNameProductCaseUse, GetAllProductsCaseUse getAllProductsCaseUSe, UpdateProductCaseUse updateProductCaseUse, DeleteProductCaseUse deleteProductCaseUse, FindProductByIdCaseUse findProductByIdCaseUse) {
         this.createProductCaseUse = createProductCaseUse;
         this.productMapper = productMapper;
         this.findByNameProductCaseUse = findByNameProductCaseUse;
         this.getAllProductsCaseUSe = getAllProductsCaseUSe;
         this.updateProductCaseUse = updateProductCaseUse;
         this.deleteProductCaseUse = deleteProductCaseUse;
+        this.findProductByIdCaseUse = findProductByIdCaseUse;
     }
 
     @PostMapping("/create")
@@ -42,6 +44,11 @@ public class ProductController {
         return getAllProductsCaseUSe.getAllProducts().stream()
                 .map(productMapper::fromDomainToPersistence)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/search/{id}")
+    public ProductPersistence getAllProductsByCategory(@PathVariable Integer id) {
+        return productMapper.fromDomainToPersistence(findProductByIdCaseUse.findProductById(id));
     }
 
     @PutMapping("/update/{productName}")
