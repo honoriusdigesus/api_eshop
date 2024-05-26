@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("SELECT u FROM User u WHERE u.cc = ?1")
-    User findUserByCC(BigDecimal cc);
+    User findUserByCC(BigInteger cc);
 }

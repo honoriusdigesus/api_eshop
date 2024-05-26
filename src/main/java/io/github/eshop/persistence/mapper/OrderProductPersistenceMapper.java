@@ -6,11 +6,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderProductPersistenceMapper {
-    public OrderProductDomain fromPersistenceToDomain(OrderProductPersistence orderProductPersistence) {
-        return new io.github.eshop.domain.entity.OrderProductDomain(orderProductPersistence.getId(), orderProductPersistence.getProduct(), orderProductPersistence.getQuantity());
+    private final ProductPersistenceMapper productMapper;
+
+    public OrderProductPersistenceMapper(ProductPersistenceMapper productMapper) {
+        this.productMapper = productMapper;
     }
 
     public OrderProductPersistence fromDomainToPersistence(OrderProductDomain orderProductDomain) {
-        return new OrderProductPersistence(orderProductDomain.getId(), orderProductDomain.getProduct(), orderProductDomain.getQuantity());
+        return new OrderProductPersistence(
+                orderProductDomain.getId(),
+                productMapper.fromDomainToPersistence(orderProductDomain.getProduct()),
+                orderProductDomain.getQuantity()
+        );
     }
+
+    public OrderProductDomain fromPersistenceToDomain(OrderProductPersistence orderProductPersistence) {
+
+        return new OrderProductDomain(
+                orderProductPersistence.getId(),
+                productMapper.fromPersistenceToDomain(orderProductPersistence.getProduct()),
+                orderProductPersistence.getQuantity()
+        );
+    }
+
 }

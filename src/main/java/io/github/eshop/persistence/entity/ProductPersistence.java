@@ -13,8 +13,6 @@ public class ProductPersistence {
     private Double price;
     private Integer stock;
     private String image;
-
-
     private Category category;
 
     public Integer getId() {

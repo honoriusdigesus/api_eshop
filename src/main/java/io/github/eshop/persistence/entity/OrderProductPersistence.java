@@ -7,11 +7,11 @@ public class OrderProductPersistence {
 
     private Integer id;
 
-    private Product product;
+    private ProductPersistence product;
 
     private Integer quantity;
 
-    public OrderProductPersistence(Product product, Integer quantity) {
+    public OrderProductPersistence(ProductPersistence product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
     }
@@ -24,11 +24,11 @@ public class OrderProductPersistence {
         this.id = id;
     }
 
-    public Product getProduct() {
+    public ProductPersistence getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductPersistence product) {
         this.product = product;
     }
 
@@ -43,7 +43,7 @@ public class OrderProductPersistence {
     public OrderProductPersistence() {
     }
 
-    public OrderProductPersistence(Integer id, Product product, Integer quantity) {
+    public OrderProductPersistence(Integer id, ProductPersistence product, Integer quantity) {
         this.id = id;
         this.product = product;
         this.quantity = quantity;

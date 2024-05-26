@@ -4,21 +4,22 @@ import io.github.eshop.data.entity.Shipping_Address;
 import io.github.eshop.data.repository.ShippingAddressRepository;
 import io.github.eshop.domain.entity.AddressDomain;
 import io.github.eshop.domain.exception.UserNotFoundException;
-import io.github.eshop.domain.mapper.AddressMapper;
-import io.github.eshop.domain.mapper.UserMapper;
+import io.github.eshop.domain.mapper.AddressDomainMapper;
+import io.github.eshop.domain.mapper.UserDomainMapper;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Component
 public class UpdateShippingAddressCaseUse {
     private final ShippingAddressRepository addressRepository;
-    private final AddressMapper addressMapper;
+    private final AddressDomainMapper addressMapper;
     private final UpdateUserCaseUse updateUserCaseUse;
     private final FindUserByCcCaseUse findUserByCcCaseUse;
-    private final UserMapper userMapper;
+    private final UserDomainMapper userMapper;
 
-    public UpdateShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressMapper addressMapper, UpdateUserCaseUse updateUserCaseUse, FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper) {
+    public UpdateShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressDomainMapper addressMapper, UpdateUserCaseUse updateUserCaseUse, FindUserByCcCaseUse findUserByCcCaseUse, UserDomainMapper userMapper) {
         this.addressRepository = addressRepository;
         this.addressMapper = addressMapper;
         this.updateUserCaseUse = updateUserCaseUse;
@@ -26,8 +27,8 @@ public class UpdateShippingAddressCaseUse {
         this.userMapper = userMapper;
     }
 
-    public void updateShippingAddress(BigDecimal cc, AddressDomain newAddressDomain) {
-        var existingAddress = addressRepository.findShippingAddressesBy(cc);
+    public void updateShippingAddress(BigInteger cc, AddressDomain newAddressDomain) {
+        var existingAddress = addressRepository.findShippingAddressesByCC(cc);
         var user = findUserByCcCaseUse.findUserByCc(cc);
         if (existingAddress == null || user == null) {
             throw new UserNotFoundException("The unregistered user and/or without address");

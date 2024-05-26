@@ -7,11 +7,11 @@ public class OrderProductDomain {
 
     private Integer id;
 
-    private Product product;
+    private ProductDomain product;
 
     private Integer quantity;
 
-    public OrderProductDomain(Product product, Integer quantity) {
+    public OrderProductDomain(ProductDomain product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
     }
@@ -24,11 +24,11 @@ public class OrderProductDomain {
         this.id = id;
     }
 
-    public Product getProduct() {
+    public ProductDomain getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductDomain product) {
         this.product = product;
     }
 
@@ -43,7 +43,7 @@ public class OrderProductDomain {
     public OrderProductDomain() {
     }
 
-    public OrderProductDomain(Integer id, Product product, Integer quantity) {
+    public OrderProductDomain(Integer id, ProductDomain product, Integer quantity) {
         this.id = id;
         this.product = product;
         this.quantity = quantity;

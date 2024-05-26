@@ -11,16 +11,16 @@ import java.util.List;
 public class OrderDomain {
 
     private Integer id;
-    private User user;
+    private UserDomain user;
     private String paymentMethod;
-    private Shipping_Address address;
+    private AddressDomain address;
     private List<OrderProductDomain> items;
     private double totalPrice;
 
     public OrderDomain() {
     }
 
-    public OrderDomain(Integer id, String paymentMethod, User user, Shipping_Address address, List<OrderProductDomain> items, double totalPrice) {
+    public OrderDomain(Integer id, String paymentMethod, UserDomain user, AddressDomain address, List<OrderProductDomain> items, double totalPrice) {
         this.id = id;
         this.paymentMethod = paymentMethod;
         this.user = user;
@@ -45,19 +45,19 @@ public class OrderDomain {
         this.paymentMethod = paymentMethod;
     }
 
-    public User getUser() {
+    public UserDomain getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDomain user) {
         this.user = user;
     }
 
-    public Shipping_Address getAddress() {
+    public AddressDomain getAddress() {
         return address;
     }
 
-    public void setAddress(Shipping_Address address) {
+    public void setAddress(AddressDomain address) {
         this.address = address;
     }
 

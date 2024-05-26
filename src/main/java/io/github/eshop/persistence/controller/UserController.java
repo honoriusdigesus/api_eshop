@@ -2,10 +2,11 @@ package io.github.eshop.persistence.controller;
 
 import io.github.eshop.domain.caseuse.*;
 import io.github.eshop.persistence.entity.UserPersistence;
-import io.github.eshop.persistence.mapper.UserMapperPersistence;
+import io.github.eshop.persistence.mapper.UserPersistenceMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,14 +15,14 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final CreateUserCaseUse createUserCaseUse;
-    private final UserMapperPersistence userMapperPersistence;
+    private final UserPersistenceMapper userMapperPersistence;
     private final FindUserByCcCaseUse findUserByCcCaseUse;
     private final GetAllUserCaseUse getAllUserCaseUse;
     private final UpdateUserCaseUse updateUserCaseUse;
     private final DeleteUserCaseUse deleteUserCaseUse;
     private final FindUserByIdCaseUse findUserByIdCaseUse;
 
-    public UserController(CreateUserCaseUse createUserCaseUse, UserMapperPersistence userMapperPersistence, FindUserByCcCaseUse findUserByCcCaseUse, GetAllUserCaseUse getAllUserCaseUse, UpdateUserCaseUse updateUserCaseUse, DeleteUserCaseUse deleteUserCaseUse, FindUserByIdCaseUse findUserByIdCaseUse) {
+    public UserController(CreateUserCaseUse createUserCaseUse, UserPersistenceMapper userMapperPersistence, FindUserByCcCaseUse findUserByCcCaseUse, GetAllUserCaseUse getAllUserCaseUse, UpdateUserCaseUse updateUserCaseUse, DeleteUserCaseUse deleteUserCaseUse, FindUserByIdCaseUse findUserByIdCaseUse) {
         this.createUserCaseUse = createUserCaseUse;
         this.userMapperPersistence = userMapperPersistence;
         this.findUserByCcCaseUse = findUserByCcCaseUse;
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/find/{cc}")
-    public UserPersistence getUserByCc(@PathVariable BigDecimal cc) {
+    public UserPersistence getUserByCc(@PathVariable BigInteger cc) {
         return userMapperPersistence.fromDomainToPersistence(findUserByCcCaseUse.findUserByCc(cc));
     }
 
@@ -53,12 +54,12 @@ public class UserController {
 
 
     @PutMapping("/update/{cc}")
-    public void updateUser(@PathVariable BigDecimal cc, @RequestBody UserPersistence userPersistence) {
+    public void updateUser(@PathVariable BigInteger cc, @RequestBody UserPersistence userPersistence) {
         updateUserCaseUse.updateUser(cc, userMapperPersistence.fromPersistenceToDomain(userPersistence));
     }
 
     @DeleteMapping("/delete/{cc}")
-    public void deleteUser(@PathVariable BigDecimal cc) {
+    public void deleteUser(@PathVariable BigInteger cc) {
         deleteUserCaseUse.deleteUser(cc);
     }
 }

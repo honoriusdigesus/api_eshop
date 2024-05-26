@@ -9,19 +9,19 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BeansConfig {
-    private final CategoryMapper categoryMapper;
+    private final CategoryDomainMapper categoryMapper;
 
-    public BeansConfig(CategoryMapper categoryMapper) {
+    public BeansConfig(CategoryDomainMapper categoryMapper) {
         this.categoryMapper = categoryMapper;
     }
 
     @Bean
-    public CreateCategoryCaseUse createCategoryCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper, Validator validator) {
+    public CreateCategoryCaseUse createCategoryCaseUse(CategoryRepository categoryRepository, CategoryDomainMapper categoryMapper, Validator validator) {
         return new CreateCategoryCaseUse(categoryRepository, categoryMapper, validator);
     }
 
     @Bean
-    public FindByCategoryNameCaseUse findByCategoryNameCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper, Validator validator) {
+    public FindByCategoryNameCaseUse findByCategoryNameCaseUse(CategoryRepository categoryRepository, CategoryDomainMapper categoryMapper, Validator validator) {
         return new FindByCategoryNameCaseUse(categoryRepository, categoryMapper, validator);
     }
 
@@ -31,62 +31,62 @@ public class BeansConfig {
     }
 
     @Bean
-    public CreateProductCaseUse createProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator) {
+    public CreateProductCaseUse createProductCaseUse(ProductRepository productRepository, ProductDomainMapper productMapper, Validator validator) {
         return new CreateProductCaseUse(productRepository, productMapper, validator);
     }
 
     @Bean
-    public GetAllsCategoriesCaseUse getAllsCategoriesCaseUse(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+    public GetAllsCategoriesCaseUse getAllsCategoriesCaseUse(CategoryRepository categoryRepository, CategoryDomainMapper categoryMapper) {
         return new GetAllsCategoriesCaseUse(categoryRepository, categoryMapper);
     }
 
     @Bean
-    public FindByNameProductCaseUse findByNameProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator) {
+    public FindByNameProductCaseUse findByNameProductCaseUse(ProductRepository productRepository, ProductDomainMapper productMapper, Validator validator) {
         return new FindByNameProductCaseUse(productRepository, productMapper, validator);
     }
 
     @Bean
-    public GetAllProductsCaseUse getAllProductsCaseUse(ProductRepository productRepository, ProductMapper productMapper) {
+    public GetAllProductsCaseUse getAllProductsCaseUse(ProductRepository productRepository, ProductDomainMapper productMapper) {
         return new GetAllProductsCaseUse(productRepository, productMapper);
     }
 
     @Bean
-    public UpdateProductCaseUse updateProductCaseUse(ProductRepository productRepository, ProductMapper productMapper, Validator validator, FindByNameProductCaseUse findByNameProductCaseUse) {
+    public UpdateProductCaseUse updateProductCaseUse(ProductRepository productRepository, ProductDomainMapper productMapper, Validator validator, FindByNameProductCaseUse findByNameProductCaseUse) {
         return new UpdateProductCaseUse(productRepository, productMapper, validator, findByNameProductCaseUse);
     }
 
     @Bean
-    public DeleteProductCaseUse deleteProductCaseUse(FindByNameProductCaseUse findByNameProductCaseUse, ProductMapper productMapper, Validator validator, ProductRepository productRepository) {
+    public DeleteProductCaseUse deleteProductCaseUse(FindByNameProductCaseUse findByNameProductCaseUse, ProductDomainMapper productMapper, Validator validator, ProductRepository productRepository) {
         return new DeleteProductCaseUse(findByNameProductCaseUse, productMapper, validator, productRepository);
     }
 
     @Bean
-    public CreateUserCaseUse createUserCaseUse(UserRepository userRepository, UserMapper userMapper, Validator validator) {
+    public CreateUserCaseUse createUserCaseUse(UserRepository userRepository, UserDomainMapper userMapper, Validator validator) {
         return new CreateUserCaseUse(userRepository, userMapper, validator);
     }
 
     @Bean
-    public FindUserByCcCaseUse findUserByCcCaseUse(UserRepository userRepository, UserMapper userMapper) {
+    public FindUserByCcCaseUse findUserByCcCaseUse(UserRepository userRepository, UserDomainMapper userMapper) {
         return new FindUserByCcCaseUse(userRepository, userMapper);
     }
 
     @Bean
-    public GetAllUserCaseUse getAllUserCaseUse(UserRepository userRepository, UserMapper userMapper) {
+    public GetAllUserCaseUse getAllUserCaseUse(UserRepository userRepository, UserDomainMapper userMapper) {
         return new GetAllUserCaseUse(userRepository, userMapper);
     }
 
     @Bean
-    public CreateAddressCaseUse createAddressCaseUse(ShippingAddressRepository addressRepository, AddressMapper addressMapper) {
+    public CreateAddressCaseUse createAddressCaseUse(ShippingAddressRepository addressRepository, AddressDomainMapper addressMapper) {
         return new CreateAddressCaseUse(addressRepository, addressMapper);
     }
 
     @Bean
-    public UpdateUserCaseUse updateUserCaseUse(FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper, UserRepository userRepository) {
+    public UpdateUserCaseUse updateUserCaseUse(FindUserByCcCaseUse findUserByCcCaseUse, UserDomainMapper userMapper, UserRepository userRepository) {
         return new UpdateUserCaseUse(findUserByCcCaseUse, userMapper, userRepository);
     }
 
     @Bean
-    public UpdateShippingAddressCaseUse updateShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressMapper addressMapper, UpdateUserCaseUse updateUserCaseUse, FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper) {
+    public UpdateShippingAddressCaseUse updateShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressDomainMapper addressMapper, UpdateUserCaseUse updateUserCaseUse, FindUserByCcCaseUse findUserByCcCaseUse, UserDomainMapper userMapper) {
         return new UpdateShippingAddressCaseUse(addressRepository, addressMapper, updateUserCaseUse, findUserByCcCaseUse, userMapper);
     }
 
@@ -96,37 +96,49 @@ public class BeansConfig {
     }
 
     @Bean
-    public GetAllShippingAddressCaseUse getAllShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressMapper addressMapper) {
+    public GetAllShippingAddressCaseUse getAllShippingAddressCaseUse(ShippingAddressRepository addressRepository, AddressDomainMapper addressMapper) {
         return new GetAllShippingAddressCaseUse(addressRepository, addressMapper);
     }
 
     @Bean
-    public DeleteUserCaseUse deleteUserCaseUse(UserRepository userRepository, FindUserByCcCaseUse findUserByCcCaseUse, UserMapper userMapper) {
+    public DeleteUserCaseUse deleteUserCaseUse(UserRepository userRepository, FindUserByCcCaseUse findUserByCcCaseUse, UserDomainMapper userMapper) {
         return new DeleteUserCaseUse(userRepository, findUserByCcCaseUse, userMapper);
     }
 
     @Bean
-    public CreateOrderProductCaseUse createOrderProductCaseUse(OrderProductRepository orderProductRepository, OrderProductMapper orderProductMapper) {
+    public CreateOrderProductCaseUse createOrderProductCaseUse(OrderProductRepository orderProductRepository, OrderProductDomainMapper orderProductMapper) {
         return new CreateOrderProductCaseUse(orderProductRepository, orderProductMapper);
     }
 
     @Bean
-    public CreateOrderCaseUse createOrderCaseUse(OrderRepository orderRepository,
-                                                 OrderMapperDomain orderMapper,
-                                                 UserMapper userMapper,
-                                                 FindProductByIdCaseUse findProductByIdCaseUse,
-                                                 FindUserByIdCaseUse findUserByIdCaseUse,
-                                                 ProductMapper productMapper, UpdateProductCaseUse updateProductCaseUse) {
-        return new CreateOrderCaseUse(orderRepository, orderMapper, userMapper, findProductByIdCaseUse, findUserByIdCaseUse, productMapper, updateProductCaseUse);
+    public CreateOrderCaseUse createOrderCaseUse(
+            UserDomainMapper userMapper,
+            FindProductByIdCaseUse findProductByIdCaseUse,
+            FindUserByIdCaseUse findUserByIdCaseUse,
+            ProductDomainMapper productMapper,
+            UpdateProductCaseUse updateProductCaseUse,
+            FindAddressByUserCcCaseUse findAddressByIdCaseUse,
+            AddressDomainMapper addressMapper
+    ) {
+        return new CreateOrderCaseUse(
+
+                userMapper,
+                findProductByIdCaseUse,
+                findUserByIdCaseUse,
+                productMapper,
+                updateProductCaseUse,
+                findAddressByIdCaseUse,
+                addressMapper
+                );
     }
 
     @Bean
-    public FindProductByIdCaseUse findProductByIdCaseUse(ProductRepository productRepository, ProductMapper productMapper) {
+    public FindProductByIdCaseUse findProductByIdCaseUse(ProductRepository productRepository, ProductDomainMapper productMapper) {
         return new FindProductByIdCaseUse(productRepository, productMapper);
     }
 
     @Bean
-    public FindUserByIdCaseUse findUserByIdCaseUse(UserRepository userRepository, UserMapper userMapper) {
+    public FindUserByIdCaseUse findUserByIdCaseUse(UserRepository userRepository, UserDomainMapper userMapper) {
         return new FindUserByIdCaseUse(userRepository, userMapper);
     }
 }

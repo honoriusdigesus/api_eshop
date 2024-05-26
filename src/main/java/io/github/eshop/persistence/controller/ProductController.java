@@ -2,7 +2,7 @@ package io.github.eshop.persistence.controller;
 
 import io.github.eshop.domain.caseuse.*;
 import io.github.eshop.persistence.entity.ProductPersistence;
-import io.github.eshop.persistence.mapper.ProductMapperPersistence;
+import io.github.eshop.persistence.mapper.ProductPersistenceMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.stream.Collectors;
 @RequestMapping("/product")
 public class ProductController {
     private final CreateProductCaseUse createProductCaseUse;
-    private final ProductMapperPersistence productMapper;
+    private final ProductPersistenceMapper productMapper;
     private final FindByNameProductCaseUse findByNameProductCaseUse;
     private final GetAllProductsCaseUse getAllProductsCaseUSe;
     private final UpdateProductCaseUse updateProductCaseUse;
     private final DeleteProductCaseUse deleteProductCaseUse;
     private final FindProductByIdCaseUse findProductByIdCaseUse;
 
-    public ProductController(CreateProductCaseUse createProductCaseUse, ProductMapperPersistence productMapper, FindByNameProductCaseUse findByNameProductCaseUse, GetAllProductsCaseUse getAllProductsCaseUSe, UpdateProductCaseUse updateProductCaseUse, DeleteProductCaseUse deleteProductCaseUse, FindProductByIdCaseUse findProductByIdCaseUse) {
+    public ProductController(CreateProductCaseUse createProductCaseUse, ProductPersistenceMapper productMapper, FindByNameProductCaseUse findByNameProductCaseUse, GetAllProductsCaseUse getAllProductsCaseUSe, UpdateProductCaseUse updateProductCaseUse, DeleteProductCaseUse deleteProductCaseUse, FindProductByIdCaseUse findProductByIdCaseUse) {
         this.createProductCaseUse = createProductCaseUse;
         this.productMapper = productMapper;
         this.findByNameProductCaseUse = findByNameProductCaseUse;

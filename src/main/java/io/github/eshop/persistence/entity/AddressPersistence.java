@@ -11,7 +11,7 @@ public class AddressPersistence {
     private String city;
     private String address_line; //Direccin completa, ejemplo: CR12AA#12-34 Apto 123 Conjunto 1 Barrio La Locura
 
-    private User users;
+    private UserPersistence users;
 
     public String getCountry() {
         return country;
@@ -45,11 +45,11 @@ public class AddressPersistence {
         this.address_line = address_line;
     }
 
-    public User getUsers() {
+    public UserPersistence getUsers() {
         return users;
     }
 
-    public void setUsers(User users) {
+    public void setUsers(UserPersistence users) {
         this.users = users;
     }
 
@@ -64,7 +64,7 @@ public class AddressPersistence {
     public AddressPersistence() {
     }
 
-    public AddressPersistence(Integer id, String country, String state, String city, String address_line, User users) {
+    public AddressPersistence(Integer id, String country, String state, String city, String address_line, UserPersistence users) {
         this.id = id;
         this.country = country;
         this.state = state;

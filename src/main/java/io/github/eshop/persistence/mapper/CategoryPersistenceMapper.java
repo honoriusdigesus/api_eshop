@@ -5,7 +5,7 @@ import io.github.eshop.persistence.entity.CategoryPersistence;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CategoryMapperPersistence {
+public class CategoryPersistenceMapper {
 
         public CategoryDomain fromPersistenceToDomain(CategoryPersistence category) {
             return new CategoryDomain(category.getId(), category.getCategory(), category.getDescription());

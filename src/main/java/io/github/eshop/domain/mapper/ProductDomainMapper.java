@@ -5,7 +5,7 @@ import io.github.eshop.domain.entity.ProductDomain;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductMapper {
+public class ProductDomainMapper {
     public Product fromDomainToEntity(ProductDomain productDomain) {
         return new Product(
                 productDomain.getId(),

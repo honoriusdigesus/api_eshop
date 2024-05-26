@@ -5,7 +5,7 @@ import io.github.eshop.persistence.entity.ProductPersistence;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductMapperPersistence {
+public class ProductPersistenceMapper {
     public ProductPersistence fromDomainToPersistence(ProductDomain productDomain) {
         return new ProductPersistence(
                 productDomain.getId(),

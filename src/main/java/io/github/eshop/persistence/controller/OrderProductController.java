@@ -21,6 +21,6 @@ public class OrderProductController {
 
     @PostMapping("/create")
     public void createOrderProduct(@RequestBody OrderProductPersistence orderProductPersistence) {
-        createOrderProductCaseUse.saveOrderProduct(orderProductPersistenceMapper.fromPersistenceToDomain(orderProductPersistence));
+        createOrderProductCaseUse.saveOrderProduct(orderProductPersistenceMapper.(orderProductPersistence));
     }
 }

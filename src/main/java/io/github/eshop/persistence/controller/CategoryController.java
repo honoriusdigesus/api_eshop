@@ -5,7 +5,7 @@ import io.github.eshop.domain.caseuse.DeleteCategoryCaseUse;
 import io.github.eshop.domain.caseuse.FindByCategoryNameCaseUse;
 import io.github.eshop.domain.caseuse.GetAllsCategoriesCaseUse;
 import io.github.eshop.persistence.entity.CategoryPersistence;
-import io.github.eshop.persistence.mapper.CategoryMapperPersistence;
+import io.github.eshop.persistence.mapper.CategoryPersistenceMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/category")
 public class CategoryController {
     private final CreateCategoryCaseUse createCategoryCaseUse;
-    private final CategoryMapperPersistence categoryMapper;
+    private final CategoryPersistenceMapper categoryMapper;
     private final FindByCategoryNameCaseUse findByCategoryNameCaseUse;
     private final DeleteCategoryCaseUse deleteCategoryCaseUse;
     private final GetAllsCategoriesCaseUse getAllsCategoriesCaseUse;
 
-    public CategoryController(CreateCategoryCaseUse createCategoryCaseUse, CategoryMapperPersistence categoryMapper, FindByCategoryNameCaseUse findByCategoryNameCaseUse, DeleteCategoryCaseUse deleteCategoryCaseUse, GetAllsCategoriesCaseUse getAllsCategoriesCaseUse) {
+    public CategoryController(CreateCategoryCaseUse createCategoryCaseUse, CategoryPersistenceMapper categoryMapper, FindByCategoryNameCaseUse findByCategoryNameCaseUse, DeleteCategoryCaseUse deleteCategoryCaseUse, GetAllsCategoriesCaseUse getAllsCategoriesCaseUse) {
         this.createCategoryCaseUse = createCategoryCaseUse;
         this.categoryMapper = categoryMapper;
         this.findByCategoryNameCaseUse = findByCategoryNameCaseUse;

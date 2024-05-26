@@ -5,7 +5,7 @@ import io.github.eshop.domain.entity.CategoryDomain;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CategoryMapper {
+public class CategoryDomainMapper {
 
     public CategoryDomain fromDataToDomain(Category category) {
         return new CategoryDomain(category.getId(), category.getCategory(), category.getDescription());

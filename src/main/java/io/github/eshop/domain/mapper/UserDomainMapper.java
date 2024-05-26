@@ -5,7 +5,7 @@ import io.github.eshop.domain.entity.UserDomain;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserDomainMapper {
     public User fromDomainToEntity(UserDomain userDomain) {
 return new User(
                 userDomain.getId(),

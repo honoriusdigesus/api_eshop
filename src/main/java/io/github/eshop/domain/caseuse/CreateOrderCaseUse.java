@@ -1,47 +1,53 @@
 package io.github.eshop.domain.caseuse;
 
 import io.github.eshop.data.repository.OrderRepository;
-import io.github.eshop.domain.entity.AddressDomain;
 import io.github.eshop.domain.entity.OrderDomain;
 import io.github.eshop.domain.entity.ProductDomain;
 import io.github.eshop.domain.entity.UserDomain;
-import io.github.eshop.domain.mapper.OrderMapperDomain;
-import io.github.eshop.domain.mapper.ProductMapper;
-import io.github.eshop.domain.mapper.UserMapper;
+import io.github.eshop.domain.mapper.AddressDomainMapper;
+import io.github.eshop.domain.mapper.OrderDomainMapper;
+import io.github.eshop.domain.mapper.ProductDomainMapper;
+import io.github.eshop.domain.mapper.UserDomainMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CreateOrderCaseUse {
 
-    private final OrderRepository orderRepository;
-    private final OrderMapperDomain orderMapper;
-    private final UserMapper userMapper;
+
+    private final UserDomainMapper userMapper;
     private final FindProductByIdCaseUse findProductByIdCaseUse;
     private final FindUserByIdCaseUse findUserByIdCaseUse;
-    private final ProductMapper productMapper;
+    private final ProductDomainMapper productMapper;
     private final UpdateProductCaseUse updateProductCaseUse;
+    private final FindAddressByUserCcCaseUse findAddressByIdCaseUse;
+    private final AddressDomainMapper addressMapper;
+
 
 
     public CreateOrderCaseUse(
-            OrderRepository orderRepository,
-            OrderMapperDomain orderMapper,
-            UserMapper userMapper,
+
+            UserDomainMapper userMapper,
             FindProductByIdCaseUse findProductByIdCaseUse,
             FindUserByIdCaseUse findUserByIdCaseUse,
-            ProductMapper productMapper, UpdateProductCaseUse updateProductCaseUse
+            ProductDomainMapper productMapper,
+            UpdateProductCaseUse updateProductCaseUse,
+            FindAddressByUserCcCaseUse findAddressByIdCaseUse,
+            AddressDomainMapper addressMapper
     ) {
-        this.orderRepository = orderRepository;
-        this.orderMapper = orderMapper;
+
         this.userMapper = userMapper;
         this.findProductByIdCaseUse = findProductByIdCaseUse;
         this.findUserByIdCaseUse = findUserByIdCaseUse;
         this.productMapper = productMapper;
         this.updateProductCaseUse = updateProductCaseUse;
+        this.findAddressByIdCaseUse = findAddressByIdCaseUse;
+        this.addressMapper = addressMapper;
     }
 
     public void createOrder(OrderDomain orderDomain) {
         UserDomain userDomain = findUserByIdCaseUse.findUserById(orderDomain.getUser().getId());
-        orderDomain.setUser(userMapper.fromDomainToEntity(userDomain));
+        orderDomain.setUser(userDomain);
+        orderDomain.setAddress(findAddressByIdCaseUse.findAddressByCc(userDomain.getCc()));
 
         //Buscar los productos por id foreach
         orderDomain.getItems().forEach(orderProduct -> {
@@ -55,7 +61,7 @@ public class CreateOrderCaseUse {
                 product.setStock(product.getStock() - orderProduct.getQuantity());
                 updateProductCaseUse.updateProduct(product.getName(), product);
             }
-            orderProduct.setProduct(productMapper.fromDomainToEntity(product));
+            orderProduct.setProduct(product);
             System.out.println(product);
         });
     }

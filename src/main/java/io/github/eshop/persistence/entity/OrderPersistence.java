@@ -1,34 +1,27 @@
 package io.github.eshop.persistence.entity;
 
-import io.github.eshop.data.entity.Product;
-import io.github.eshop.data.entity.Shipping_Address;
-import io.github.eshop.data.entity.User;
-
 import java.util.List;
 
 
 public class OrderPersistence {
 
     private Integer id;
-    private User user;
+    private UserPersistence user;
     private String paymentMethod;
-    private Shipping_Address address;
+    private AddressPersistence address;
     private List<OrderProductPersistence> items;
     private double totalPrice;
 
     public OrderPersistence() {
     }
 
-    public OrderPersistence(Integer id, String paymentMethod, User user, Shipping_Address address, List<OrderProductPersistence> items, double totalPrice) {
+    public OrderPersistence(Integer id, String paymentMethod, UserPersistence user, AddressPersistence address, List<OrderProductPersistence> items, double totalPrice) {
         this.id = id;
         this.paymentMethod = paymentMethod;
         this.user = user;
         this.address = address;
         this.items = items;
         this.totalPrice = totalPrice;
-    }
-
-    public OrderPersistence(Product product, Integer quantity) {
     }
 
     public Integer getId() {
@@ -47,19 +40,19 @@ public class OrderPersistence {
         this.paymentMethod = paymentMethod;
     }
 
-    public User getUser() {
+    public UserPersistence getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserPersistence user) {
         this.user = user;
     }
 
-    public Shipping_Address getAddress() {
+    public AddressPersistence getAddress() {
         return address;
     }
 
-    public void setAddress(Shipping_Address address) {
+    public void setAddress(AddressPersistence address) {
         this.address = address;
     }
 
