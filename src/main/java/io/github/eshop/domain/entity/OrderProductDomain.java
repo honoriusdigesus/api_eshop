@@ -11,6 +11,11 @@ public class OrderProductDomain {
 
     private Integer quantity;
 
+    public OrderProductDomain(Product product, Integer quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public Integer getId() {
         return id;
     }

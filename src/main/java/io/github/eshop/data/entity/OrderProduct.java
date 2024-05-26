@@ -16,6 +16,11 @@ public class OrderProduct {
 
     private Integer quantity;
 
+    public OrderProduct(Product product, Integer quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -14,13 +14,13 @@ public class OrderDomain {
     private User user;
     private String paymentMethod;
     private Shipping_Address address;
-    private List<OrderProduct> items;
+    private List<OrderProductDomain> items;
     private double totalPrice;
 
     public OrderDomain() {
     }
 
-    public OrderDomain(Integer id, String paymentMethod, User user, Shipping_Address address, List<OrderProduct> items, double totalPrice) {
+    public OrderDomain(Integer id, String paymentMethod, User user, Shipping_Address address, List<OrderProductDomain> items, double totalPrice) {
         this.id = id;
         this.paymentMethod = paymentMethod;
         this.user = user;
@@ -61,11 +61,11 @@ public class OrderDomain {
         this.address = address;
     }
 
-    public List<OrderProduct> getItems() {
+    public List<OrderProductDomain> getItems() {
         return items;
     }
 
-    public void setItems(List<OrderProduct> items) {
+    public void setItems(List<OrderProductDomain> items) {
         this.items = items;
     }
 

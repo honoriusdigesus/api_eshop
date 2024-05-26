@@ -1,12 +1,11 @@
 package io.github.eshop.domain.caseuse;
 
-import io.github.eshop.data.entity.Shipping_Address;
 import io.github.eshop.data.repository.OrderRepository;
 import io.github.eshop.domain.entity.AddressDomain;
 import io.github.eshop.domain.entity.OrderDomain;
 import io.github.eshop.domain.entity.ProductDomain;
 import io.github.eshop.domain.entity.UserDomain;
-import io.github.eshop.domain.mapper.OrderMapper;
+import io.github.eshop.domain.mapper.OrderMapperDomain;
 import io.github.eshop.domain.mapper.ProductMapper;
 import io.github.eshop.domain.mapper.UserMapper;
 import org.springframework.stereotype.Component;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class CreateOrderCaseUse {
 
     private final OrderRepository orderRepository;
-    private final OrderMapper orderMapper;
+    private final OrderMapperDomain orderMapper;
     private final UserMapper userMapper;
     private final FindProductByIdCaseUse findProductByIdCaseUse;
     private final FindUserByIdCaseUse findUserByIdCaseUse;
@@ -25,7 +24,7 @@ public class CreateOrderCaseUse {
 
     public CreateOrderCaseUse(
             OrderRepository orderRepository,
-            OrderMapper orderMapper,
+            OrderMapperDomain orderMapper,
             UserMapper userMapper,
             FindProductByIdCaseUse findProductByIdCaseUse,
             FindUserByIdCaseUse findUserByIdCaseUse,
@@ -43,7 +42,6 @@ public class CreateOrderCaseUse {
     public void createOrder(OrderDomain orderDomain) {
         UserDomain userDomain = findUserByIdCaseUse.findUserById(orderDomain.getUser().getId());
         orderDomain.setUser(userMapper.fromDomainToEntity(userDomain));
-        AddressDomain addressDomain;
 
         //Buscar los productos por id foreach
         orderDomain.getItems().forEach(orderProduct -> {
@@ -58,7 +56,7 @@ public class CreateOrderCaseUse {
                 updateProductCaseUse.updateProduct(product.getName(), product);
             }
             orderProduct.setProduct(productMapper.fromDomainToEntity(product));
-            System.out.println("Product: " + product.getName() + " - " + product.getPrice());
+            System.out.println(product);
         });
     }
 }

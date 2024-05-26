@@ -32,7 +32,7 @@ public class MappersConfig {
     }
 
     @Bean
-    public OrderMapper orderMapper() {
-        return new OrderMapper();
+    public OrderMapperDomain orderMapper() {
+        return new OrderMapperDomain();
     }
 }

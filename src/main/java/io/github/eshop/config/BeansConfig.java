@@ -112,7 +112,7 @@ public class BeansConfig {
 
     @Bean
     public CreateOrderCaseUse createOrderCaseUse(OrderRepository orderRepository,
-                                                 OrderMapper orderMapper,
+                                                 OrderMapperDomain orderMapper,
                                                  UserMapper userMapper,
                                                  FindProductByIdCaseUse findProductByIdCaseUse,
                                                  FindUserByIdCaseUse findUserByIdCaseUse,

@@ -11,6 +11,11 @@ public class OrderProductPersistence {
 
     private Integer quantity;
 
+    public OrderProductPersistence(Product product, Integer quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public Integer getId() {
         return id;
     }
