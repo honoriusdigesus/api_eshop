@@ -1,19 +1,18 @@
 package io.github.eshop.domain.entity;
 
-import io.github.eshop.data.entity.Product;
-
-
 public class OrderProductDomain {
 
     private Integer id;
-
+    private Integer quantity;
     private ProductDomain product;
 
-    private Integer quantity;
+    public OrderProductDomain() {
+    }
 
-    public OrderProductDomain(ProductDomain product, Integer quantity) {
-        this.product = product;
+    public OrderProductDomain(Integer id, Integer quantity, ProductDomain product) {
+        this.id = id;
         this.quantity = quantity;
+        this.product = product;
     }
 
     public Integer getId() {
@@ -24,14 +23,6 @@ public class OrderProductDomain {
         this.id = id;
     }
 
-    public ProductDomain getProduct() {
-        return product;
-    }
-
-    public void setProduct(ProductDomain product) {
-        this.product = product;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -40,21 +31,20 @@ public class OrderProductDomain {
         this.quantity = quantity;
     }
 
-    public OrderProductDomain() {
+    public ProductDomain getProduct() {
+        return product;
     }
 
-    public OrderProductDomain(Integer id, ProductDomain product, Integer quantity) {
-        this.id = id;
+    public void setProduct(ProductDomain product) {
         this.product = product;
-        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "OrderProduct{" +
                 "id=" + id +
-                ", product=" + product +
                 ", quantity=" + quantity +
+                ", product=" + product +
                 '}';
     }
 }

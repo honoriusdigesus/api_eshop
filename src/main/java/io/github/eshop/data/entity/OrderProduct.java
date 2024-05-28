@@ -9,16 +9,19 @@ public class OrderProduct {
     @GeneratedValue
     private Integer id;
 
-
-    @ManyToOne
-    @JoinColumn(name="product_id")
-    private Product product;
-
     private Integer quantity;
 
-    public OrderProduct(Product product, Integer quantity) {
-        this.product = product;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    public OrderProduct() {
+    }
+
+    public OrderProduct(Integer id, Integer quantity, Product product) {
+        this.id = id;
         this.quantity = quantity;
+        this.product = product;
     }
 
     public Integer getId() {
@@ -29,14 +32,6 @@ public class OrderProduct {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -45,21 +40,20 @@ public class OrderProduct {
         this.quantity = quantity;
     }
 
-    public OrderProduct() {
+    public Product getProduct() {
+        return product;
     }
 
-    public OrderProduct(Integer id, Product product, Integer quantity) {
-        this.id = id;
+    public void setProduct(Product product) {
         this.product = product;
-        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "OrderProduct{" +
                 "id=" + id +
-                ", product=" + product +
                 ", quantity=" + quantity +
+                ", product=" + product +
                 '}';
     }
 }

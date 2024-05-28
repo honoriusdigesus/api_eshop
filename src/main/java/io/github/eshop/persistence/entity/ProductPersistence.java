@@ -1,5 +1,8 @@
 package io.github.eshop.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.github.eshop.data.entity.Category;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -75,15 +78,27 @@ public class ProductPersistence {
         description = "SIN DESCRIPCIÓN";
     }
 
-    public ProductPersistence(Integer id, String name, String description, Double price, Integer stock, String image, Category category) {
+//    public ProductPersistence(Integer id, String name, String description, Double price, Integer stock, String image, Category category) {
+//        this.id = id;
+//        this.name = name;
+//        this.description = description;
+//        this.price = price;
+//        this.stock = stock;
+//        this.image = image;
+//        this.category = category;
+//    }
+
+    @JsonCreator
+    public ProductPersistence(@JsonProperty("id") Integer id,
+                              @JsonProperty("name") String name,
+                              @JsonProperty("price") Double price,
+                              @JsonProperty("stock") Integer stock) {
         this.id = id;
         this.name = name;
-        this.description = description;
         this.price = price;
         this.stock = stock;
-        this.image = image;
-        this.category = category;
     }
+
 
     @Override
     public String toString() {

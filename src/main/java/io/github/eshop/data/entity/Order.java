@@ -2,38 +2,36 @@ package io.github.eshop.data.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 @Entity
-@Table(name = "orders")
+@Table(name = "order_product")
 public class Order {
     @Id
     @GeneratedValue
     private Integer id;
+
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    private String paymentMethod;
-
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "address_id")
     private Shipping_Address address;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<OrderProduct> items;
+    @ManyToOne
+    @JoinColumn(name = "Order_product_id")
+    private OrderProduct products;
 
-    private double totalPrice;
+    private Double total;
 
     public Order() {
     }
 
-    public Order(Integer id, String paymentMethod, User user, Shipping_Address address, List<OrderProduct> items, double totalPrice) {
+    public Order(Integer id, User user, Shipping_Address address, OrderProduct products, Double total) {
         this.id = id;
-        this.paymentMethod = paymentMethod;
         this.user = user;
         this.address = address;
-        this.items = items;
-        this.totalPrice = totalPrice;
+        this.products = products;
+        this.total = total;
     }
 
     public Integer getId() {
@@ -42,14 +40,6 @@ public class Order {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
     }
 
     public User getUser() {
@@ -68,25 +58,30 @@ public class Order {
         this.address = address;
     }
 
-    public List<OrderProduct> getItems() {
-        return items;
+    public OrderProduct getProducts() {
+        return products;
     }
 
-    public void setItems(List<OrderProduct> items) {
-        this.items = items;
+    public void setProducts(OrderProduct products) {
+        this.products = products;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
-    public void calculateTotalPrice() {
-        totalPrice = items.stream()
-                .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
-                .sum();
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", address=" + address +
+                ", products=" + products +
+                ", total=" + total +
+                '}';
     }
 }

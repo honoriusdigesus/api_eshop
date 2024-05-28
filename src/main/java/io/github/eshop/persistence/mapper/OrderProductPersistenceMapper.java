@@ -1,6 +1,8 @@
 package io.github.eshop.persistence.mapper;
 
+import io.github.eshop.data.entity.OrderProduct;
 import io.github.eshop.domain.entity.OrderProductDomain;
+import io.github.eshop.domain.mapper.ProductDomainMapper;
 import io.github.eshop.persistence.entity.OrderProductPersistence;
 import org.springframework.stereotype.Component;
 
@@ -13,20 +15,10 @@ public class OrderProductPersistenceMapper {
     }
 
     public OrderProductPersistence fromDomainToPersistence(OrderProductDomain orderProductDomain) {
-        return new OrderProductPersistence(
-                orderProductDomain.getId(),
-                productMapper.fromDomainToPersistence(orderProductDomain.getProduct()),
-                orderProductDomain.getQuantity()
-        );
+        return new OrderProductPersistence(orderProductDomain.getId(), orderProductDomain.getQuantity(), productMapper.fromDomainToPersistence(orderProductDomain.getProduct()));
     }
 
-    public OrderProductDomain fromPersistenceToDomain(OrderProductPersistence orderProductPersistence) {
-
-        return new OrderProductDomain(
-                orderProductPersistence.getId(),
-                productMapper.fromPersistenceToDomain(orderProductPersistence.getProduct()),
-                orderProductPersistence.getQuantity()
-        );
+    public OrderProductDomain fromPersistenceToDomain(OrderProductPersistence orderProduct) {
+        return new OrderProductDomain(orderProduct.getId(), orderProduct.getQuantity(), productMapper.fromPersistenceToDomain(orderProduct.getProduct()));
     }
-
 }

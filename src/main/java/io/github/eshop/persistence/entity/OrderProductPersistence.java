@@ -1,19 +1,18 @@
 package io.github.eshop.persistence.entity;
 
-import io.github.eshop.data.entity.Product;
-
-
 public class OrderProductPersistence {
 
     private Integer id;
-
+    private Integer quantity;
     private ProductPersistence product;
 
-    private Integer quantity;
+    public OrderProductPersistence() {
+    }
 
-    public OrderProductPersistence(ProductPersistence product, Integer quantity) {
-        this.product = product;
+    public OrderProductPersistence(Integer id, Integer quantity, ProductPersistence product) {
+        this.id = id;
         this.quantity = quantity;
+        this.product = product;
     }
 
     public Integer getId() {
@@ -24,14 +23,6 @@ public class OrderProductPersistence {
         this.id = id;
     }
 
-    public ProductPersistence getProduct() {
-        return product;
-    }
-
-    public void setProduct(ProductPersistence product) {
-        this.product = product;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -40,21 +31,20 @@ public class OrderProductPersistence {
         this.quantity = quantity;
     }
 
-    public OrderProductPersistence() {
+    public ProductPersistence getProduct() {
+        return product;
     }
 
-    public OrderProductPersistence(Integer id, ProductPersistence product, Integer quantity) {
-        this.id = id;
+    public void setProduct(ProductPersistence product) {
         this.product = product;
-        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "OrderProduct{" +
                 "id=" + id +
-                ", product=" + product +
                 ", quantity=" + quantity +
+                ", product=" + product +
                 '}';
     }
 }

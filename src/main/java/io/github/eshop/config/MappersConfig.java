@@ -1,7 +1,6 @@
 package io.github.eshop.config;
 
 import io.github.eshop.domain.mapper.*;
-import io.github.eshop.persistence.mapper.OrderPersistenceMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -28,13 +27,7 @@ public class MappersConfig {
     }
 
     @Bean
-    public OrderProductDomainMapper orderProductMapper(ProductDomainMapper productDomainMapper) {
-        return new OrderProductDomainMapper(productDomainMapper);
+    public OrderProductDomainMapper orderMapper(ProductDomainMapper productMapper) {
+        return new OrderProductDomainMapper(productMapper);
     }
-
-    @Bean
-    public OrderDomainMapper orderMapper() {
-        return new OrderDomainMapper();
-    }
-
 }

@@ -105,32 +105,6 @@ public class BeansConfig {
         return new DeleteUserCaseUse(userRepository, findUserByCcCaseUse, userMapper);
     }
 
-    @Bean
-    public CreateOrderProductCaseUse createOrderProductCaseUse(OrderProductRepository orderProductRepository, OrderProductDomainMapper orderProductMapper) {
-        return new CreateOrderProductCaseUse(orderProductRepository, orderProductMapper);
-    }
-
-    @Bean
-    public CreateOrderCaseUse createOrderCaseUse(
-            UserDomainMapper userMapper,
-            FindProductByIdCaseUse findProductByIdCaseUse,
-            FindUserByIdCaseUse findUserByIdCaseUse,
-            ProductDomainMapper productMapper,
-            UpdateProductCaseUse updateProductCaseUse,
-            FindAddressByUserCcCaseUse findAddressByIdCaseUse,
-            AddressDomainMapper addressMapper
-    ) {
-        return new CreateOrderCaseUse(
-
-                userMapper,
-                findProductByIdCaseUse,
-                findUserByIdCaseUse,
-                productMapper,
-                updateProductCaseUse,
-                findAddressByIdCaseUse,
-                addressMapper
-                );
-    }
 
     @Bean
     public FindProductByIdCaseUse findProductByIdCaseUse(ProductRepository productRepository, ProductDomainMapper productMapper) {
@@ -140,5 +114,10 @@ public class BeansConfig {
     @Bean
     public FindUserByIdCaseUse findUserByIdCaseUse(UserRepository userRepository, UserDomainMapper userMapper) {
         return new FindUserByIdCaseUse(userRepository, userMapper);
+    }
+
+    @Bean
+    public CreateOrderProductCaseUse createOrderCaseUse(OrderProductRepository orderProductRepository, OrderProductDomainMapper orderProductDomainMapper) {
+        return new CreateOrderProductCaseUse(orderProductRepository, orderProductDomainMapper);
     }
 }

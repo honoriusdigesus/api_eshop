@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("orderproducts")
+@RequestMapping("/order-product")
 public class OrderProductController {
     private final CreateOrderProductCaseUse createOrderProductCaseUse;
     private final OrderProductPersistenceMapper orderProductPersistenceMapper;
@@ -20,7 +20,7 @@ public class OrderProductController {
     }
 
     @PostMapping("/create")
-    public void createOrderProduct(@RequestBody OrderProductPersistence orderProductPersistence) {
-        createOrderProductCaseUse.saveOrderProduct(orderProductPersistenceMapper.(orderProductPersistence));
+    public void createOrderProduct(@RequestBody  OrderProductPersistence orderProductPersistence) {
+        createOrderProductCaseUse.saveOrderProduct(orderProductPersistenceMapper.fromPersistenceToDomain(orderProductPersistence));
     }
 }

@@ -6,28 +6,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderProductDomainMapper {
-    private final ProductDomainMapper productDomainMapper;
+    private final ProductDomainMapper productMapper;
 
-    public OrderProductDomainMapper(ProductDomainMapper productDomainMapper) {
-        this.productDomainMapper = productDomainMapper;
-    }
-
-    public OrderProductDomain fromEntityToDomain(OrderProduct orderProduct) {
-
-        return new OrderProductDomain(
-                orderProduct.getId(),
-                productDomainMapper.fromEntityToDomain(orderProduct.getProduct()),
-                orderProduct.getQuantity()
-        );
+    public OrderProductDomainMapper(ProductDomainMapper productMapper) {
+        this.productMapper = productMapper;
     }
 
     public OrderProduct fromDomainToEntity(OrderProductDomain orderProductDomain) {
-
-        return new OrderProduct(
-                orderProductDomain.getId(),
-                productDomainMapper.fromDomainToEntity(orderProductDomain.getProduct()),
-                orderProductDomain.getQuantity()
-        );
+        return new OrderProduct(orderProductDomain.getId(), orderProductDomain.getQuantity(), productMapper.fromDomainToEntity(orderProductDomain.getProduct()));
     }
 
+    public OrderProductDomain fromEntityToDomain(OrderProduct orderProduct) {
+        return new OrderProductDomain(orderProduct.getId(), orderProduct.getQuantity(), productMapper.fromEntityToDomain(orderProduct.getProduct()));
+    }
 }
