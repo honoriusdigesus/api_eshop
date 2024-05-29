@@ -2,26 +2,30 @@ package io.github.eshop.data.entity;
 
 import jakarta.persistence.*;
 
+@Table
 @Entity
-@Table(name = "order_product")
-public class OrderProduct {
+public class OrderItem {
     @Id
     @GeneratedValue
     private Integer id;
-
     private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    Product product;
 
-    public OrderProduct() {
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    Order order;
+
+    public OrderItem() {
     }
 
-    public OrderProduct(Integer id, Integer quantity, Product product) {
+    public OrderItem(Integer id, Integer quantity, Product product, Order order) {
         this.id = id;
         this.quantity = quantity;
         this.product = product;
+        this.order = order;
     }
 
     public Integer getId() {
@@ -48,12 +52,21 @@ public class OrderProduct {
         this.product = product;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @Override
     public String toString() {
-        return "OrderProduct{" +
+        return "OrderItem{" +
                 "id=" + id +
                 ", quantity=" + quantity +
                 ", product=" + product +
+                ", order=" + order +
                 '}';
     }
 }

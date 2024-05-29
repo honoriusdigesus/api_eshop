@@ -26,8 +26,5 @@ public class MappersConfig {
         return new AddressDomainMapper(userMapper);
     }
 
-    @Bean
-    public OrderProductDomainMapper orderMapper(ProductDomainMapper productMapper) {
-        return new OrderProductDomainMapper(productMapper);
-    }
+
 }

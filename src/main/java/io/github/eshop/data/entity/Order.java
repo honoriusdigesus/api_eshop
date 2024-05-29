@@ -1,37 +1,43 @@
 package io.github.eshop.data.entity;
 
+import io.github.eshop.enums.OrderStatus;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
-@Table(name = "order_product")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue
     private Integer id;
 
+    @Column(nullable = false)
+    private LocalDateTime date = LocalDateTime.now();
+
+    private String comment;
+
+    @Enumerated(value = EnumType.STRING)
+    private OrderStatus state = OrderStatus.PENDING;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Shipping_Address address;
-
-    @ManyToOne
-    @JoinColumn(name = "Order_product_id")
-    private OrderProduct products;
-
-    private Double total;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+    List<OrderItem> items;
 
     public Order() {
     }
 
-    public Order(Integer id, User user, Shipping_Address address, OrderProduct products, Double total) {
+    public Order(Integer id, LocalDateTime date, String comment, OrderStatus state, User user, List<OrderItem> items) {
         this.id = id;
+        this.date = date;
+        this.comment = comment;
+        this.state = state;
         this.user = user;
-        this.address = address;
-        this.products = products;
-        this.total = total;
+        this.items = items;
     }
 
     public Integer getId() {
@@ -42,6 +48,30 @@ public class Order {
         this.id = id;
     }
 
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public OrderStatus getState() {
+        return state;
+    }
+
+    public void setState(OrderStatus state) {
+        this.state = state;
+    }
+
     public User getUser() {
         return user;
     }
@@ -50,38 +80,23 @@ public class Order {
         this.user = user;
     }
 
-    public Shipping_Address getAddress() {
-        return address;
+    public List<OrderItem> getItems() {
+        return items;
     }
 
-    public void setAddress(Shipping_Address address) {
-        this.address = address;
-    }
-
-    public OrderProduct getProducts() {
-        return products;
-    }
-
-    public void setProducts(OrderProduct products) {
-        this.products = products;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", date=" + date +
+                ", comment='" + comment + '\'' +
+                ", state=" + state +
                 ", user=" + user +
-                ", address=" + address +
-                ", products=" + products +
-                ", total=" + total +
+                ", items=" + items +
                 '}';
     }
 }

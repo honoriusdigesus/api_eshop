@@ -116,8 +116,4 @@ public class BeansConfig {
         return new FindUserByIdCaseUse(userRepository, userMapper);
     }
 
-    @Bean
-    public CreateOrderProductCaseUse createOrderCaseUse(OrderProductRepository orderProductRepository, OrderProductDomainMapper orderProductDomainMapper) {
-        return new CreateOrderProductCaseUse(orderProductRepository, orderProductDomainMapper);
-    }
 }
