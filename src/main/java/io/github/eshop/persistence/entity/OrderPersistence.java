@@ -1,20 +1,11 @@
-package io.github.eshop.data.entity;
-
-import jakarta.persistence.*;
+package io.github.eshop.persistence.entity;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "orders")
-public class Order {
-    @Id
-    @GeneratedValue
+public class OrderPersistence {
+
     private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
+    private UserPersistence user;
     private LocalDateTime date;
     private String status;
 
@@ -26,11 +17,11 @@ public class Order {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserPersistence getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserPersistence user) {
         this.user = user;
     }
 
@@ -50,10 +41,10 @@ public class Order {
         this.status = status;
     }
 
-    public Order() {
+    public OrderPersistence() {
     }
 
-    public Order(Integer id, User user, LocalDateTime date, String status) {
+    public OrderPersistence(Integer id, UserPersistence user, LocalDateTime date, String status) {
         this.id = id;
         this.user = user;
         this.date = date;
